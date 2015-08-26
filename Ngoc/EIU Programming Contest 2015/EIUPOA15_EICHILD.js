@@ -9,6 +9,7 @@ registerProblem('EIUPOA15_CHILD',
     ],
     function () {
 
+        // Note: JavaScript version does not work for big testcases, the java version: http://www.spoj.com/EIUPOA15/files/src/14983185/
 
         var tokens = readline().split(' ');
         var n = +tokens[0], m = +tokens[1];

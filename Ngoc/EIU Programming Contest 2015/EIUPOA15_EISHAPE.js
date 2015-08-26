@@ -11,18 +11,6 @@ registerProblem('EIUPOA15_EISHAPE',
     ],
     function () {
 
-        /*
-        var k = +readline();
-        while (k > 0) {
-            var sum = 0, max = 0;
-            var tokens = readline().split(' ').forEach(function (num) {
-                sum += +num;
-                max = Math.max(max, +num);
-            });
-            print(max <= sum / 2 ? 'YES' : 'NO');
-            var k = +readline();
-        }
-        */
         var k = +readline();
         while (k > 0) {
             var sum = 0;
