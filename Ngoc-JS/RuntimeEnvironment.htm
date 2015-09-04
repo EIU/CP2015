@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Competitive Programming - JS Framework - Minh Ngọc</title>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Problems</h1>
+    <div>
+        <select id="SelectProblem">
+            <option></option>
+        </select>
+    </div>
+
+    <h1>Runtime</h1>
+    <table id="Runtime" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr><th>No.</th><th>Input</th><th>Output</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <hr style="margin: 20px;" />
+    <h1>Custom Test</h1>
+    <textarea id="Testcase" rows="10" style="width:98%; display:block; margin: 10px;"></textarea>
+    <input type="button" id="Test" value="Submit" />
+
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="Runtime.js"></script>
+
+    <!-- Add Your Problems Here -->
+    <!--<script type="text/javascript" src="Problems/ReviewJavaScriptJul23.js"></script>
+    <script type="text/javascript" src="Problems/558CAmrandChemistry.js"></script>
+    <script type="text/javascript" src="Problems/558BAmrandTheLargeArray.js"></script>
+    <script type="text/javascript" src="Problems/558BAmrandTheLargeArray2.js"></script>
+    <script type="text/javascript" src="Problems/558BAmrandTheLargeArray3.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivA-AHardWay.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivB-ACoincidence.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivC-AFullSet.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivD-AFishLunch.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivE-TheSecretCode.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivF-DuraLex.js"></script>
+    <script type="text/javascript" src="Kharkiv/2014WPFKharkivH-AGrantiveOfScience.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_GAME.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EIZOOM.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EISCORING.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EISHAPE.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EIFREEZER.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EIIP.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EICHILD.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EIMAX2.js"></script>
+    <script type="text/javascript" src="Problems/EIUPOA15_EISHAPE.js"></script>
+    <script type="text/javascript" src="KTU Programming Camp/D3I- RedAndYellow.js"></script>-->
+    <script type="text/javascript" src="Open.Kattis/Number Trick.js"></script>
+    <!--
+        registerProblem(id, testcases, mainFunction);
+        testcases: [{input:'', output: ''}];
+    -->
+    <script type="text/javascript">
+        $(function () {
+            $("#Test").click(function () {
+                var currentProb = getCurrentProblem();
+                if (currentProb) {
+                    runProblem({ input: $('#Testcase').val(), output: '' }, currentProb.func);
+                }
+            });
+
+            window.setTimeout(function () {
+                var lastValue = $('#SelectProblem option:last-child').attr('value');
+                $('#SelectProblem').val(lastValue);
+                $('#SelectProblem').change();
+                //var lastValue = $('#SelectProblem option:last-child').click();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

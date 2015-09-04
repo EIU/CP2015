@@ -1,0 +1,6 @@
+http://www.abecedarical.com/javascript/script_reverse_polish.html
+
+$('table.problems tr td:nth-child(7) input').width(120)
+
+$('select[name^="data[judge]"]').val(2)
+

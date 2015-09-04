@@ -1,0 +1,8 @@
+Sample Input
+0 1
+1 2
+0 7
+
+Output for Sample Input
+1 2 12:00
+0 7 10:17
