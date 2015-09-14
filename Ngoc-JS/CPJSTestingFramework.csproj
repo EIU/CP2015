@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Open.Kattis\Ants.js" />
     <Content Include="Open.Kattis\Number Trick.js" />
     <Content Include="Open.Kattis\Problems – Kattis, Kattis.url" />
     <Content Include="KTU Programming Camp\Dashboard - KTU Programming Camp %28Day 1%29 - Codeforces.url" />

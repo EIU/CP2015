@@ -1,4 +1,4 @@
-﻿registerProblem('D1I: Red And Yellow',
+﻿registerProblem('Kattis: Number Trick',
     [{
         input: '2.6',
         output: '135 270 135135 270270'
