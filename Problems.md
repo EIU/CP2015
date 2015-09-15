@@ -29,3 +29,6 @@
 
 #### Strongly connection component
 1. http://codeforces.com/problemset/problem/427/C
+
+#### Spanning tree
+1. http://codeforces.com/contest/445/problem/B
