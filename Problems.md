@@ -32,3 +32,9 @@
 
 #### Spanning tree
 1. http://codeforces.com/contest/445/problem/B
+
+#### Challenges:
+1. http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3769
+2. http://codeforces.com/problemset/problem/567/D
+2. http://codeforces.com/problemset/problem/527/C
+3. https://open.kattis.com/problems/bst
