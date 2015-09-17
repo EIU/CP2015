@@ -5,12 +5,9 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 
-public class DataStructureExample {
+public class CodeExample {
 
 	public static void main(String[] args) {
-		ArrayList<Date> list = new ArrayList<Date>();
-		PriorityQueue<Date> priorityQueue = new PriorityQueue<>();
-		TreeSet<Date> tree = new TreeSet<>();
 
 		// Sort Array
 		Integer[] array = {3,1,4,2,4,5};
@@ -27,6 +24,7 @@ public class DataStructureExample {
 		
 		
 		// ArrayList:
+		ArrayList<Date> list = new ArrayList<Date>();
 		list.add(new Date(20, 5, 1994));
 		list.add(new Date(16, 2, 1995));
 		list.add(new Date(10, 3, 1992));
@@ -40,36 +38,38 @@ public class DataStructureExample {
 		});
 		System.out.println("ArrayList Option 1:");
 		for(int i = 0; i < list.size(); i++){
-			System.out.println(list.get(i).toString());
+			System.out.println(list.get(i));
 		}
 		
 		// Sort ArrayList Option 2
 		Collections.sort(list);
 		System.out.println("ArrayList Option 2:");
 		for(int i = 0; i < list.size(); i++){
-			System.out.println(list.get(i).toString());
+			System.out.println(list.get(i));
 		}
 
 		
 		// PriorityQueue
+		PriorityQueue<Date> priorityQueue = new PriorityQueue<>();
 		priorityQueue.add(new Date(20, 5, 1994));
 		priorityQueue.add(new Date(16, 2, 1995));
 		priorityQueue.add(new Date(10, 3, 1992));
 		System.out.println("Priority Queue:");
 		while (!priorityQueue.isEmpty()) {
 			Date b = priorityQueue.poll();
-			System.out.println(b.toString());
+			System.out.println(b);
 		}
 
 		
 		// TreeSet:
+		TreeSet<Date> tree = new TreeSet<>();
 		tree.add(new Date(20, 5, 1994));
 		tree.add(new Date(16, 2, 1995));
 		tree.add(new Date(10, 3, 1992));
 		System.out.println("TreeSet:");
 		while (!tree.isEmpty()) {
 			Date b = tree.pollFirst();
-			System.out.println(b.toString());
+			System.out.println(b);
 		}
 	}
 	
