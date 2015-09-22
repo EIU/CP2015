@@ -11,7 +11,7 @@ public class SegmentTreeMaxExample {
 		System.out.println(st.getMax(0, 0) == 6);
 		System.out.println(st.getMax(1, 1) == 10);
 		st.update(3, 9);
-		System.out.println(st.getMax(2, 6) == 9);
+		System.out.println(st.getMax(2, 4) == 9);
 	}
 
 	static class SegmentTree {
