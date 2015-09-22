@@ -25,8 +25,7 @@ public class Main {
     static class Task {
         public void solve(int testNumber, InputReader in, PrintWriter out) {
             long[] data = new long[]{1, 2, 3, 4, 5};
-            MagicTree magicTree = new MagicTree(data.length);
-            magicTree.build(data);
+            MagicTree magicTree = new MagicTree(data);
             out.println(magicTree.getMax(0, 4) == 5);
             magicTree.update(0, 10);
             out.println(magicTree.getMax(0, 4) == 10);
@@ -42,27 +41,25 @@ public class Main {
     }
 
     static class MagicTree {
-        long[] t;
+        long[] nodes;
         int n;
 
-        public MagicTree(int n) {
-            this.n = n;
-            this.t = new long[4 * n + 10];
-        }
-
-        public void build(long[] ar) {
+        public MagicTree(long[] ar) {
+            this.n = ar.length;
+            this.nodes = new long[4 * n + 10];
             build(0, ar, 0, n - 1);
         }
 
         private void build(int node, long[] ar, int left, int right) {
             if (left == right) {
-                t[node] = ar[left];
+                nodes[node] = ar[left];
                 return;
             }
             int mid = (left + right) >> 1;
             build(node * 2 + 1, ar, left, mid);
             build(node * 2 + 2, ar, mid + 1, right);
-            t[node] = Math.max(t[node * 2 + 1], t[node * 2 + 2]);
+            nodes[node] = Math.max(nodes[node * 2 + 1], nodes[node * 2 + 2]);
+            // nodes[node] = nodes[node * 2 + 1] + nodes[node * 2 + 2] if we want to calculate sum
         }
 
         public long getMax(int from, int to) {
@@ -73,15 +70,17 @@ public class Main {
             // out range
             if (right < from || to < left) {
                 return Long.MIN_VALUE;
+                // return 0 if we want to calculate sum
             }
             // fit in range
             if (from <= left && right <= to) {
-                return t[node];
+                return nodes[node];
             }
             int mid = (left + right) >> 1;
-            long leftNode = getMax(node * 2 + 1, left, mid, from, to);
-            long rightNode = getMax(node * 2 + 2, mid + 1, right, from, to);
-            return Math.max(leftNode, rightNode);
+            long leftValue = getMax(node * 2 + 1, left, mid, from, to);
+            long rightValue = getMax(node * 2 + 2, mid + 1, right, from, to);
+            return Math.max(leftValue, rightValue);
+            // return leftValue + rightValue if we want to calculate sum
         }
 
         public void update(int index, long value) {
@@ -92,14 +91,15 @@ public class Main {
             // out range
             if (index < left || right < index) return;
             if (left == right) {
-                t[node] = value;
+                nodes[node] = value;
                 return;
             }
             int mid = (left + right) >> 1;
             update(node * 2 + 1, left, mid, index, value);
             update(node * 2 + 2, mid + 1, right, index, value);
             // update node
-            t[node] = Math.max(t[node * 2 + 1], t[node * 2 + 2]);
+            nodes[node] = Math.max(nodes[node * 2 + 1], nodes[node * 2 + 2]);
+            // nodes[node] = nodes[node * 2 + 1] + nodes[node * 2 + 2] if we want to calculate sum
         }
 
     }
@@ -112,7 +112,29 @@ public class Main {
             reader = new BufferedReader(new InputStreamReader(stream), 32768);
             tokenizer = null;
         }
+		
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
 
+		public int nextInt(){
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong(){
+			return Long.parseLong(next());
+		}
+
+		public double nextDouble(){
+			return Double.parseDouble(next());
+		}
     }
 }
 
