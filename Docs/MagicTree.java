@@ -144,4 +144,5 @@ maxObj = {max: 0};
 for(var i=1;i<10000; i++){ max = buildTree(0, 0, i-1); if(max/i > maxObj.max) maxObj = {max: max/i, i: i, total: max}}
 function buildTree(node, left, right){if(left == right) return node; var mid = (left+right)>>1; return Math.max(buildTree(node*2+1, left, mid), buildTree(node*2+2, mid+1,right)); }
 0,1,2,3,4,5,6,7,8,9 => max/i = 2.4
+i = 8256 => 3.937
 */
