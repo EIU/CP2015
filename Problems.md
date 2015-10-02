@@ -1,3 +1,12 @@
+#### Array:
+1. https://uva.onlinejudge.org/index.php…
+2. https://uva.onlinejudge.org/external/2/230.pdf
+3. https://uva.onlinejudge.org/index.php…
+4. https://uva.onlinejudge.org/index.php…
+5. https://uva.onlinejudge.org/external/109/10978.pdf
+6. http://codeforces.com/problemset/problem/378/B
+7. http://codeforces.com/problemset/problem/447/C
+
 #### TreeSet:
 1. https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=442
 2. https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=919
