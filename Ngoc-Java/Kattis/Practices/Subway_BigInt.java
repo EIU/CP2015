@@ -2,8 +2,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 
-
-// Failed in any chosen primes!
 public class Subway_BigInt {
 
 	static String tourLog;
@@ -36,19 +34,19 @@ public class Subway_BigInt {
 		System.out.println(bf.toString());
 	}
 
-	static BigInteger One = BigInteger.valueOf(0);
-	static BigInteger NODEVALUE = BigInteger.valueOf(1000000241L);
-	static BigInteger MUL = BigInteger.valueOf(2038072819L);
-	static BigInteger MOD = BigInteger.valueOf(32416190071L);
+	static BigInteger NODEVALUE = BigInteger.valueOf(3425679203044211L);
+	static BigInteger MUL = BigInteger.valueOf(1000000000000223L);
+	static BigInteger MOD = BigInteger.valueOf(5724673202014703L);
 
 	static BigInteger decodeAndHash() {
 		BigInteger result = NODEVALUE;
-		int t = 2;
+		int t = 1;
 		while (pos < len && tourLog.charAt(pos) == '0') {
 			pos++;
-			result = result.add(decodeAndHash()).multiply(BigInteger.valueOf(t));
+			result = result.add(decodeAndHash());
+			t++;
 		}
 		pos++;
-		return result.multiply(MUL).mod(MOD);
+		return result.multiply(MUL).multiply(BigInteger.valueOf(t)).mod(MOD);
 	}
 }
