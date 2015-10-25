@@ -9,7 +9,7 @@ public class PrimalPartitions_Divs {
 		is = System.in;
 		// long s = System.currentTimeMillis();
 		prepare();
-		//solve();
+		solve();
 		// System.out.println(System.currentTimeMillis() - s + "ms");
 	}
 
