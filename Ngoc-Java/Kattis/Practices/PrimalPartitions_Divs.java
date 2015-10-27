@@ -25,9 +25,9 @@ public class PrimalPartitions_Divs {
 		for (int i = 1; i < n; i++) {
 			cp = parseDivs(ni());
 
-			for (int j = k - 1; j > 0; j--) {
+			for (int j = k - 1; j >= 0; j--) {
 				State statej = states[j];
-				State statej1 = states[j - 1];
+				State statej1 = j == 0 ? null : states[j - 1];
 				if (statej != null) {
 					statej.lastCPs = commonPrimes(cp, statej.lastCPs);
 					statej.score = Math.min(statej.score, statej.last());
@@ -48,9 +48,6 @@ public class PrimalPartitions_Divs {
 					}
 				}
 			}
-
-			state0.lastCPs = commonPrimes(states[0].lastCPs, cp);
-			state0.score = state0.last();
 		}
 
 		System.out.println(states[k - 1].score);

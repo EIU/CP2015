@@ -25,14 +25,15 @@ public class PrimalPartitions {
 		for (int i = 1; i < n; i++) {
 			number = ni();
 
-			for (int j = k - 1; j > 0; j--) {
+			for (int j = k - 1; j >= 0; j--) {
 				State statej = states[j];
-				State statej1 = states[j - 1];
+				State statej1 = j == 0 ? null : states[j - 1];
+
 				if (statej != null) {
 					statej.lastCPs = commonPrimes(number, statej.lastCPs);
 					statej.score = Math.min(statej.score, maxPrimes[statej.lastCPs]);
-
 				}
+
 				if (statej1 != null) {
 					int newScore = Math.min(maxPrimes[number], statej1.score);
 					if (statej == null) {
@@ -48,9 +49,6 @@ public class PrimalPartitions {
 					}
 				}
 			}
-
-			state0.lastCPs = commonPrimes(states[0].lastCPs, number);
-			state0.score = maxPrimes[state0.lastCPs];
 		}
 
 		System.out.println(states[k - 1].score);
@@ -79,29 +77,29 @@ public class PrimalPartitions {
 	static void prepare() {
 		for (int i = 2; i < MAXPRIME; i++) {
 			if (maxPrimes[i] == 0) {
-				int i2 = i + i;
-				for (int j = i2; j < MAXPRIME; j += i) {
-					// maxPrimes[j] = Math.max(maxPrimes[j], i);
+				for (int j = i << 1, k = 2; j < MAXPRIME; j += i, k++) {
 					maxPrimes[j] = i;
+					preDivs[j] = k;
 				}
-			}
-		}
-
-		for (int i = 2; i < MAXPRIME; i++) {
-			int maxPrime = maxPrimes[i];
-			if (maxPrime != 0) {
-				int j = i;
-
-				// May improve
-				// while (j % maxPrime == 0) {
-				j /= maxPrime;
-				// }
-				preDivs[i] = j;
-			} else {
 				maxPrimes[i] = i;
 				preDivs[i] = 1;
 			}
 		}
+
+		// for (int i = 2; i < MAXPRIME; i++) {
+		// int maxPrime = maxPrimes[i];
+		// if (maxPrime != 0) {
+		// int j = i;
+		// // May improve
+		// // while (j % maxPrime == 0) {
+		// j /= maxPrime;
+		// // }
+		// preDivs[i] = j;
+		// } else {
+		// maxPrimes[i] = i;
+		// preDivs[i] = 1;
+		// }
+		// }
 	}
 
 	static class State {
@@ -117,7 +115,7 @@ public class PrimalPartitions {
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
 
-	static byte[] inbuf = new byte[1 << 20];
+	static byte[] inbuf = new byte[1 << 18];
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
