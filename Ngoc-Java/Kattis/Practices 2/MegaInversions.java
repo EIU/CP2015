@@ -2,25 +2,57 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class Template {
+public class MegaInversions {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			solve();
+		int n = ni();
+
+		SumBIT values = new SumBIT(n);
+		SumBIT countDoubles = new SumBIT(n);
+		long sumTriples = 0;
+
+		for (int i = 0; i < n; i++) {
+			int position = n + 1 - ni();
+
+			long countSmaller = values.get(position - 1);
+			values.set(position, 1);
+
+			long countTwoSmaller = countDoubles.get(position - 1);
+			countDoubles.set(position, countSmaller);
+			sumTriples += countTwoSmaller;
+		}
+		System.out.println(sumTriples);
+	}
+
+	static class SumBIT {
+		int size;
+		long[] sums;
+
+		public SumBIT(int n) {
+			size = n;
+			sums = new long[n + 1];
+		}
+
+		public void set(int i, long value) {
+			for (; i <= size; i += (i & -i)) {
+				sums[i] += value;
+			}
+		}
+
+		public long get(int i) {
+			long sum = 0;
+			for (; i > 0; i -= (i & -i)) {
+				sum += sums[i];
+			}
+			return sum;
 		}
 	}
 
-	static void solve() {
-		
-	}
-
-	/*****************************************************************
+	/* ****************************************************************
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
-
 	static byte[] inbuf = new byte[1024];
 	static int lenbuf = 0, ptrbuf = 0;
 
