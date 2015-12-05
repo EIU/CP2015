@@ -12,7 +12,7 @@ class PTIT015D {
 		}
 	}
 
-	/**
+	/* *
 	 * @Lemma 1: any number A can represent in form Sum(2^xi * 3^yi) xi is strictly increase, and yi is strictly
 	 *        decrease
 	 * @Prove:
@@ -37,16 +37,16 @@ class PTIT015D {
 		while (number > 0) {
 			if (all27) {
 				switch ((int) number) {
-				case 25:
-					return result + 15 + 1;
-				case 26:
-					return result + 16 + 1;
-				case 27:
-					return result + 17 + 1;
-				case 37:
-					return result + 17 + 2;
-				case 47:
-					return result + 17 + 3;
+					case 25 :
+						return result + 15 + 1;
+					case 26 :
+						return result + 16 + 1;
+					case 27 :
+						return result + 17 + 1;
+					case 37 :
+						return result + 17 + 2;
+					case 47 :
+						return result + 17 + 3;
 				}
 			}
 			long lastDigit = number % 10;

@@ -77,7 +77,8 @@ class PTIT015G {
 			queue.add(-b[k]);
 		}
 
-		if (-queue.peek() > m - i) return false;
+		if (-queue.peek() > m - i)
+			return false;
 		if (!remove(queue, a[i])) {
 			return false;
 		}
@@ -85,14 +86,16 @@ class PTIT015G {
 		for (int k = 0; k < j; k++) {
 			queue.add(-b[k]);
 		}
-		if (-queue.peek() >= m - i) return false;
+		if (-queue.peek() >= m - i)
+			return false;
 		i++;
 
 		for (; i < m; i++) {
 			if (!remove(queue, a[i])) {
 				return false;
 			}
-			if (-queue.peek() >= m - i) return false;
+			if (-queue.peek() >= m - i)
+				return false;
 		}
 
 		return true;
@@ -122,14 +125,16 @@ class PTIT015G {
 		System.out.println(bf.toString());
 	}
 
-	/*****************************************************************
-	 ******************** BASIC READER *******************************
-	 *****************************************************************/
+	/* ****************************************************************
+	 * ******************* BASIC READER *******************************
+	 * ****************************************************************/
+
 	static byte[] inbuf = new byte[4096];
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
-		if (lenbuf == -1) throw new InputMismatchException();
+		if (lenbuf == -1)
+			throw new InputMismatchException();
 		if (ptrbuf >= lenbuf) {
 			ptrbuf = 0;
 			try {
@@ -137,7 +142,8 @@ class PTIT015G {
 			} catch (IOException e) {
 				throw new InputMismatchException();
 			}
-			if (lenbuf <= 0) return -1;
+			if (lenbuf <= 0)
+				return -1;
 		}
 		return inbuf[ptrbuf++];
 	}

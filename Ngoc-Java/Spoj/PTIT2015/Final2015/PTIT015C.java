@@ -18,7 +18,7 @@ class PTIT015C {
 		out.flush();
 	}
 
-	/**
+	/* *
 	 * @Simple solution, complexity: O(n^2lgn)
 	 * @Improve 1: instead of re-sort array, we can merge the first part (are minus 1) and the second part (they are
 	 *          already sorted) => Complexity O(n^2)
@@ -33,7 +33,7 @@ class PTIT015C {
 	 * @+ For every valid graph of matches: we can always assign Home-Away for all matches so that for every team
 	 *    |Home-Away| <= 1. Prove: For every cyclic path, assign H-WH-WH-...W then remove these edges. Finally we have
 	 *    some trees => easy
-	 * @+ The core problem is: for any two teams, there at most one match between them! => Greedy algorithm!
+	 * @+ The core problem is: for any two teams, there's at most one match between them! => Greedy algorithm!
 	 */
 	static boolean solve() {
 		int n = ni();
@@ -61,9 +61,10 @@ class PTIT015C {
 		return true;
 	}
 
-	/*****************************************************************
-	 ******************** BASIC READER *******************************
-	 *****************************************************************/
+	/* ****************************************************************
+	 * ******************* BASIC READER *******************************
+	 * ****************************************************************/
+
 	static byte[] inbuf = new byte[4096];
 	static int lenbuf = 0, ptrbuf = 0;
 
@@ -89,8 +90,7 @@ class PTIT015C {
 
 	static int skip() {
 		int b;
-		while ((b = readByte()) != -1 && isSpaceChar(b))
-			;
+		while ((b = readByte()) != -1 && isSpaceChar(b));
 		return b;
 	}
 
@@ -139,8 +139,7 @@ class PTIT015C {
 	static int ni() {
 		int num = 0, b;
 		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'))
-			;
+		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {
 			minus = true;
 			b = readByte();
@@ -160,8 +159,7 @@ class PTIT015C {
 		long num = 0;
 		int b;
 		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'))
-			;
+		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {
 			minus = true;
 			b = readByte();

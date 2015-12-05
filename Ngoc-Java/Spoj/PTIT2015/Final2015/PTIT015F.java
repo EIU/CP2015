@@ -21,10 +21,8 @@ class PTIT015F {
 		out.flush();
 	}
 
-	/**
-	 * @Solution: Simple binary search for L in range [0,1000001]
-	 * @Enhance: n in [1, 10^9], m in [1, 10^5], Pi in [0, 10^15]
-	 */
+	/* * @Solution: Simple binary search for L in range [0,1000001]
+	 * @Enhance: n in [1, 10^9], m in [1, 10^5], Pi in [0, 10^15] */
 	static void solve(int n, int m) {
 		int[] p = new int[m];
 		for (int i = 0; i < m; i++) {
@@ -64,14 +62,15 @@ class PTIT015F {
 		return count > 0 ? -1 : cost;
 	}
 
-	/*****************************************************************
-	 ******************** BASIC READER *******************************
-	 *****************************************************************/
+	/* ****************************************************************
+	 * ******************* BASIC READER *******************************
+	 * ****************************************************************/
 	static byte[] inbuf = new byte[4096];
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
-		if (lenbuf == -1) throw new InputMismatchException();
+		if (lenbuf == -1)
+			throw new InputMismatchException();
 		if (ptrbuf >= lenbuf) {
 			ptrbuf = 0;
 			try {
@@ -79,7 +78,8 @@ class PTIT015F {
 			} catch (IOException e) {
 				throw new InputMismatchException();
 			}
-			if (lenbuf <= 0) return -1;
+			if (lenbuf <= 0)
+				return -1;
 		}
 		return inbuf[ptrbuf++];
 	}
