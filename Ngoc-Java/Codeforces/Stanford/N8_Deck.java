@@ -75,8 +75,7 @@ public class N8_Deck {
 
 	/*****************************************************************
 	 ******************** BASIC READER *******************************
-	 ******** http://tinhotgioitre.com/nhin-canh-nay-thi-sao-ma-kiem-che-duoc-roi-het-nuoc-mieng/
-	 *********************************************************/
+	 *****************************************************************/
 
 	static byte[] inbuf = new byte[1024];
 	static int lenbuf = 0, ptrbuf = 0;

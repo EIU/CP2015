@@ -1,0 +1,225 @@
+<p>
+    Chương trình sau bao gồm một số giải thuật cơ bản về Array, em hãy hoàn thiện các giải thuật này và chương trình kiểm tra.</p>
+<p>
+    <span style="white-space: normal;">Không có testcases mẫu, và không tính điểm bài này. Em tự kiểm tra chương trình. Nộp vào
+        vào đây để thảo luận!</span></p>
+<h3>
+    Input</h3>
+<p>
+    + Tự tạo</p>
+<h3>
+    Output</h3>
+<p>
+    + Tự kiểm tra</p>
+<h3>
+    Program</h3>
+
+<div align="left" class="java">
+    <table border="0" cellpadding="3" cellspacing="0" bgcolor="#ffffff">
+        <tr>
+            <td nowrap="nowrap" valign="top" align="left">
+                <code><font color="#7f0055"><b>import&nbsp;</b></font><font color="#000000">java.util.Scanner;</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#7f0055"><b>public&nbsp;class&nbsp;</b></font><font color="#000000">ArrayAlgorithms&nbsp;</font><font color="#000000">{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>public&nbsp;static&nbsp;</b></font><font color="#7f0055"><b>void&nbsp;</b></font><font
+                        color="#000000">main</font><font color="#000000">(</font><font color="#000000">String</font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">args</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Scanner&nbsp;sc&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font
+                        color="#000000">Scanner</font><font color="#000000">(</font><font color="#000000">System.in</font><font color="#000000">)</font><font
+                            color="#000000">;</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">String&nbsp;command&nbsp;=&nbsp;sc.next</font><font
+                        color="#000000">()</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">n&nbsp;=&nbsp;sc.nextInt</font><font
+                        color="#000000">()</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                        color="#000000">array&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#7f0055"><b>int</b></font><font
+                            color="#000000">[</font><font color="#000000">n</font><font color="#000000">]</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>for&nbsp;</b></font><font color="#000000">(</font><font
+                        color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">j&nbsp;=&nbsp;</font><font color="#990000">0</font><font color="#000000">;&nbsp;j&nbsp;&lt;&nbsp;n;&nbsp;j++</font><font
+                            color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">array</font><font color="#000000">[</font><font
+                        color="#000000">j</font><font color="#000000">]&nbsp;</font><font color="#000000">=&nbsp;sc.nextInt</font><font color="#000000">()</font><font
+                            color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>if&nbsp;</b></font><font color="#000000">(</font><font
+                        color="#000000">command&nbsp;==&nbsp;</font><font color="#2a00ff">&#34;findMax&#34;</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font
+                        color="#000000">findMax</font><font color="#000000">(</font><font color="#000000">array</font><font color="#000000">))</font><font
+                            color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>if&nbsp;</b></font><font color="#000000">(</font><font
+                        color="#000000">command&nbsp;==&nbsp;</font><font color="#2a00ff">&#34;findMin&#34;</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font
+                        color="#000000">findMin</font><font color="#000000">(</font><font color="#000000">array</font><font color="#000000">))</font><font
+                            color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">findMax</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">findMin</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>double&nbsp;</b></font><font
+                        color="#000000">average</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">sum</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;find&nbsp;maximum&nbsp;number&nbsp;in&nbsp;the&nbsp;array,&nbsp;then&nbsp;check&nbsp;which&nbsp;number&nbsp;is</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">countMax</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;sum&nbsp;all&nbsp;odd&nbsp;numbers&nbsp;in&nbsp;array</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;what&nbsp;is&nbsp;odd&nbsp;number,&nbsp;how&nbsp;to&nbsp;check?</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">sumOddNumber</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">countEvenNumber</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;find&nbsp;minimum&nbsp;difference&nbsp;between&nbsp;two&nbsp;consecutive&nbsp;numbers&nbsp;in&nbsp;an&nbsp;array</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;minimum&nbsp;of&nbsp;Math.absolute(array[i+1]&nbsp;-&nbsp;array[i])</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>int&nbsp;</b></font><font
+                        color="#000000">findMinDistance</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;</b></font><font color="#990000">0</font><font
+                        color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;Check&nbsp;if&nbsp;first&nbsp;number&nbsp;equal&nbsp;last&nbsp;number,&nbsp;second&nbsp;number&nbsp;equal&nbsp;second&nbsp;to&nbsp;last&nbsp;number,&nbsp;and&nbsp;so&nbsp;on...</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;ith&nbsp;number&nbsp;equal&nbsp;(length-1-i)th&nbsp;number</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>boolean&nbsp;</b></font><font
+                        color="#000000">isPalindrome</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;false</b></font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;Check&nbsp;if&nbsp;number&nbsp;is&nbsp;in&nbsp;array</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>boolean&nbsp;</b></font><font
+                        color="#000000">contains</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array,&nbsp;</font><font color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">number</font><font
+                                color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;false</b></font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;Check&nbsp;if&nbsp;array&nbsp;has&nbsp;duplicated&nbsp;numbers</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;Should&nbsp;check&nbsp;every&nbsp;pair&nbsp;of&nbsp;number,&nbsp;array[i]&nbsp;vs.&nbsp;array[j],&nbsp;for&nbsp;every&nbsp;i&nbsp;!=&nbsp;j</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>boolean&nbsp;</b></font><font
+                        color="#000000">hasDuplicated</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;false</b></font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f5fbf">/**</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Desciption:&nbsp;Check&nbsp;if&nbsp;array&nbsp;has&nbsp;two&nbsp;numbers&nbsp;A&nbsp;and&nbsp;B&nbsp;where&nbsp;A&nbsp;%&nbsp;B&nbsp;=&nbsp;0</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;@Hint:&nbsp;Should&nbsp;check&nbsp;every&nbsp;pair&nbsp;of&nbsp;number,&nbsp;array[i]&nbsp;vs.&nbsp;array[j],&nbsp;for&nbsp;every&nbsp;i&nbsp;!=&nbsp;j</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#3f5fbf">*&nbsp;*/</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#7f0055"><b>boolean&nbsp;</b></font><font
+                        color="#000000">hasDivisor</font><font color="#000000">(</font><font color="#7f0055"><b>int</b></font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Add&nbsp;your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>return&nbsp;false</b></font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#3f7f5f">/*&nbsp;examples</font><br />
+                    <font color="#3f7f5f">findMax&nbsp;5&nbsp;2&nbsp;4&nbsp;3&nbsp;2&nbsp;5</font><br />
+                    <font color="#ffffff">&nbsp;</font><font color="#3f7f5f">=&gt;&nbsp;5</font><br />
+                    <font color="#ffffff">&nbsp;</font><br />
+                    <font color="#ffffff">&nbsp;</font><font color="#3f7f5f">average&nbsp;2&nbsp;3&nbsp;4</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">=&gt;&nbsp;3.5</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">findMinDistance&nbsp;4&nbsp;2&nbsp;5&nbsp;3&nbsp;1</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">=&gt;&nbsp;3</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">hasDuplicated&nbsp;3&nbsp;1&nbsp;3&nbsp;1</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">=&gt;&nbsp;true</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">hasDuplicated&nbsp;4&nbsp;1&nbsp;2&nbsp;3&nbsp;4</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">=&gt;&nbsp;false</font><br />
+                    <font color="#3f7f5f">*/</font></code>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+            </td>
+        </tr>
+    </table>
+</div>
