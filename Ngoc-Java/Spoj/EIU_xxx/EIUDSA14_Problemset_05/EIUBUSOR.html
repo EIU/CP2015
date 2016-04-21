@@ -1,0 +1,81 @@
+<p>
+    Hiện thực giải thuật Bubble Sort cho danh sách chứa dữ liệu kiểu số, tham khảo: <a href="http://visualgo.net/sorting.html">
+        Giải thuật Sorts</a>, <a href="http://www.spoj.com/EIUDSA14/problems/EILINKED/">Generic Collection</a>, và đoạn chương
+    trình gợi ý bên dưới.</p>
+<h3>
+    Input</h3>
+<p>
+    Gồm hai dòng:</p>
+<p>
+    + Dòng đầu tiên chứa số nguyên N (1<= N <= 3*10^4) là số phần tử của danh sách, và kiểu dữ liệu trong danh sách (Một trong
+    4 giá trị sau: int, long, double, float).
+</p>
+<p>
+    + Dòng thứ hai gồm N số ai (-10^9 <= ai <= 10^9) có kiểu xác định ở trên.
+</p>
+<h3>
+    Output</h3>
+<p>
+    + Danh sách N số đã được xắp xếp bằng giải thuật Bubble Sort.</p>
+<h3>
+    Example</h3>
+<pre><strong>Input:</strong>
+5 double
+2.5 1.0 3.0 0.5 1.0
+
+<strong>Output:</strong>
+0.5 1.0 1.0 2.5 3.0
+</pre>
+<h3>
+    Gợi ý:</h3>
+<div align="left" class="java">
+    <table border="0" cellpadding="3" cellspacing="0" bgcolor="#ffffff">
+        <tr>
+            <!-- start source code -->
+            <td nowrap="nowrap" valign="top" align="left">
+                <code><font color="#7f0055"><b>import&nbsp;</b></font><font color="#000000">java.util.Scanner;</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#7f0055"><b>public&nbsp;class&nbsp;</b></font><font color="#000000">EIUSESOR&nbsp;</font><font color="#000000">{</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>public&nbsp;static&nbsp;</b></font><font color="#7f0055"><b>void&nbsp;</b></font><font
+                        color="#000000">main</font><font color="#000000">(</font><font color="#000000">String</font><font color="#000000">[]&nbsp;</font><font
+                            color="#000000">args</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Scanner&nbsp;sc&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font
+                        color="#000000">Scanner</font><font color="#000000">(</font><font color="#000000">System.in</font><font color="#000000">)</font><font
+                            color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">N&nbsp;=&nbsp;sc.nextInt</font><font
+                        color="#000000">()</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">String&nbsp;dataType&nbsp;=&nbsp;sc.next</font><font
+                        color="#000000">()</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>if&nbsp;</b></font><font color="#000000">(</font><font
+                        color="#000000">dataType&nbsp;==&nbsp;</font><font color="#2a00ff">&#34;double&#34;&nbsp;</font><font color="#000000">||&nbsp;</font><font
+                            color="#7f0055"><b>true</b></font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Double</font><font color="#000000">[]&nbsp;</font><font
+                        color="#000000">array&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Double</font><font
+                            color="#000000">[</font><font color="#000000">N</font><font color="#000000">]</font><font color="#000000">;</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">insertionSort</font><font color="#000000">(</font><font
+                        color="#000000">array</font><font color="#000000">)</font><font color="#000000">;</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#ffffff"></font>
+                    <br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#7f0055"><b>static&nbsp;</b></font><font color="#000000">&lt;T&nbsp;</font><font
+                        color="#7f0055"><b>extends&nbsp;</b></font><font color="#000000">Number&gt;&nbsp;</font><font color="#7f0055"><b>void&nbsp;</b></font>bubble<font
+                            color="#000000">Sort</font><font color="#000000">(</font><font color="#000000">T</font><font color="#000000">[]&nbsp;</font><font
+                                color="#000000">array</font><font color="#000000">)&nbsp;{</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Your&nbsp;code&nbsp;here</font><br />
+                    <font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+                    <font color="#000000">}</font></code>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+            </td>
+        </tr>
+    </table>
+</div>
