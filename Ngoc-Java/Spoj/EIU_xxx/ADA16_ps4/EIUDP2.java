@@ -18,17 +18,13 @@ class EIUDP2 {
 				sum[i] = sum[i - 1] + nl();
 			}
 
-			// f(j) = max{f(i) + s(i+k+1,j)}
+			// f(j) = max{f(i) + s(i+k+1,j) | i in [j-2k,j-k)}
 			// f(j) - s(0,j) = f(i) - s(0,i) + s(0,i) + s(i+k+1,j) - s(0,j)
-			// G(j) = G(i) - s(i+1,i+k)
+			// <=> G(j) = G(i) - s(i+1,i+k)
 			long max = 0;
 			long maxg = 0;
 			reset();
 			for (int i = 0; i <= n + 2 * k; i++) {
-				if (i == 54) {
-					int x = 0;
-					x++;
-				}
 				if (cacheSegments[i] != null) {
 					add(cacheSegments[i]);
 				}

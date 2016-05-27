@@ -2,7 +2,7 @@ import java.io.FileWriter;
 
 public class GEN {
 
-	static int id = 16;
+	static int id = 26;
 
 	public static void main(String[] args) throws Exception {
 		//		gen_DP6(20, 0, 20);
@@ -20,6 +20,12 @@ public class GEN {
 		//		gen_DP6(100000, 0, 1000000000);
 
 		//		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
+		gen_DP6(1000000, 0, 1000);
 		gen_DP6(1000000, 0, 1000);
 		gen_DP6(1000000, 0, 1000);
 	}
@@ -51,7 +57,7 @@ public class GEN {
 
 		//int[] ks = new int[]{5, 10, n / 20, n / 5, n * 2 / 5};
 		//int[] ks = new int[]{3, 10, n / 5};
-		int[] ks = new int[]{(int) randBetween(n / 50, n / 30)};
+		int[] ks = new int[]{(int) randBetween(n / 60, n / 50)};
 		// int[] ks = new int[]{1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 		// 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7,
 		// 7, 7, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10};
