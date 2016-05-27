@@ -2,34 +2,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-class DP6 {
+public class StringTheory {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			int n = ni();
-			int k = ni();
+		int n = ni();
 
-			int nCache = n + 4 * k + 1;
-			long[] sumCosts = new long[nCache];
-			for (int i = 2 * k + 1; i <= n + 2 * k; i++) {
-				sumCosts[i] = sumCosts[i - 1] + nl();
-			}
+		for (int i = 0; i < n; i++) {
 
-			long[] sumEarns = new long[nCache];
-			long max = 0;
-			for (int i = 1; i <= n + 2 * k; i++) {
-				sumEarns[i] = Math.max(sumEarns[i], sumEarns[i - 1]);
-				for (int j = i + k + 1; j <= i + 2 * k; j++) {
-					sumEarns[j] = Math.max(sumEarns[j], sumEarns[i] + sumCosts[j] - sumCosts[i + k]);
-				}
-				max = Math.max(max, sumEarns[i]);
-				System.out.println(max);
-			}
-
-			System.out.println(max);
 		}
 	}
 
@@ -68,26 +49,6 @@ class DP6 {
 
 	static int ni() {
 		int num = 0, b;
-		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
-		if (b == '-') {
-			minus = true;
-			b = readByte();
-		}
-
-		while (true) {
-			if (b >= '0' && b <= '9') {
-				num = num * 10 + (b - '0');
-			} else {
-				return minus ? -num : num;
-			}
-			b = readByte();
-		}
-	}
-
-	static long nl() {
-		long num = 0;
-		int b;
 		boolean minus = false;
 		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {

@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-class DP6 {
+class EIUDP2 {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
@@ -13,24 +13,68 @@ class DP6 {
 			int k = ni();
 
 			int nCache = n + 4 * k + 1;
-			long[] sumCosts = new long[nCache];
+			long[] sum = new long[nCache];
 			for (int i = 2 * k + 1; i <= n + 2 * k; i++) {
-				sumCosts[i] = sumCosts[i - 1] + nl();
+				sum[i] = sum[i - 1] + nl();
 			}
 
-			long[] sumEarns = new long[nCache];
+			// f(j) = max{f(i) + s(i+k+1,j)}
+			// f(j) - s(0,j) = f(i) - s(0,i) + s(0,i) + s(i+k+1,j) - s(0,j)
+			// G(j) = G(i) - s(i+1,i+k)
 			long max = 0;
-			for (int i = 1; i <= n + 2 * k; i++) {
-				sumEarns[i] = Math.max(sumEarns[i], sumEarns[i - 1]);
-				for (int j = i + k + 1; j <= i + 2 * k; j++) {
-					sumEarns[j] = Math.max(sumEarns[j], sumEarns[i] + sumCosts[j] - sumCosts[i + k]);
+			long maxg = 0;
+			reset();
+			for (int i = 0; i <= n + 2 * k; i++) {
+				if (i == 54) {
+					int x = 0;
+					x++;
 				}
-				max = Math.max(max, sumEarns[i]);
-				System.out.println(max);
+				if (cacheSegments[i] != null) {
+					add(cacheSegments[i]);
+				}
+				long g = Math.max(maxg, getMax(i));
+				maxg = Math.max(maxg, g) - sum[i + 1] + sum[i];
+				cacheSegments[i + k + 1] = new Segment(g - sum[i + k] + sum[i], i + k + k);
+				max = Math.max(max, g + sum[i]);
 			}
-
 			System.out.println(max);
 		}
+	}
+
+	static class Segment {
+		public long value;
+		public int right;
+
+		public Segment(long value, int right) {
+			this.value = value;
+			this.right = right;
+		}
+	}
+
+	static final int MAX = 1000000 * 4 + 1;
+	static int head = 0;
+	static int tail = 0;
+	static Segment[] cacheSegments = new Segment[MAX];
+	static Segment[] queueSegments = new Segment[MAX];
+
+	static void reset() {
+		head = 1;
+		tail = 0;
+		queueSegments[0] = new Segment(0, MAX);
+	}
+
+	static void add(Segment segment) {
+		while (head > tail && segment.value >= queueSegments[head - 1].value) {
+			head--;
+		}
+		queueSegments[head++] = segment;
+	}
+
+	static long getMax(int i) {
+		while (tail < head && queueSegments[tail].right < i) {
+			tail++;
+		}
+		return queueSegments[tail].value;
 	}
 
 	/* ****************************************************************
