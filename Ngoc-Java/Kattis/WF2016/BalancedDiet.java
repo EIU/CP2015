@@ -21,7 +21,8 @@ public class BalancedDiet {
 			bs[ni() - 1]++;
 		}
 
-		final int MAX = 100001;
+		// final int MAX = 100001;
+		int MAX = sum + 1;
 		int[] needs = new int[MAX];
 
 		for (int i = 0; i < m; i++) {
