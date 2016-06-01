@@ -7,11 +7,65 @@ public class StringTheory {
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
-		int n = ni();
 
+		n = ni();
+		quotes = new int[n];
 		for (int i = 0; i < n; i++) {
-
+			sum += (quotes[i] = ni());
 		}
+
+		if (sum % 2 == 1 || sum == 4) {
+			System.out.println("no quotation");
+			return;
+		}
+
+		for (int k = 100; k > 1; k--) {
+			if (testLevel(k)) {
+				System.out.println(k);
+				return;
+			}
+		}
+
+		System.out.println(sum == 2 ? 1 : "no quotation");
+	}
+
+	static int n;
+	static int[] quotes;
+	static int sum;
+
+	static boolean testLevel(int k) {
+		if (sum < k * (k + 1)) {
+			return false;
+		}
+
+		int level = k;
+		int i = 0;
+		int quote = quotes[i];
+		while (level > 0 && quote >= level) {
+			quote -= level;
+			level--;
+			if (quote == 0) {
+				i++;
+				quote = quotes[i];
+			}
+		}
+		if (level > 0) {
+			return false;
+		}
+
+		level = k;
+		i = n - 1;
+		quote = quotes[i];
+		while (level > 0 && quote >= level) {
+			quote -= level;
+			level--;
+			if (quote == 0) {
+				i--;
+				quote = quotes[i];
+			}
+		}
+
+		return level == 0;
 	}
 
 	/* ****************************************************************

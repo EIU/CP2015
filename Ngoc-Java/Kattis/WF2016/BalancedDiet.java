@@ -2,53 +2,54 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-class DP6_3 {
+public class BalancedDiet {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			int n = ni();
-			int k = ni();
+		int m = ni();
+		int k = ni();
 
-			long[] sumCosts = new long[n];
-			for (int i = 0; i < n; i++) {
-				sumCosts[i] = nl();
-			}
-
-			String formatString = "%" + n + "s";
-			long limit = (long) Math.pow(2, n);
-			long max = 0;
-			for (int i = 0; i < limit; i++) {
-				char[] flags = String.format(formatString, Integer.toBinaryString(i)).replace(" ", "0").toCharArray();
-				int cRest = k;
-				int cWork = 0;
-				long sum = 0;
-				for (int j = 0; j < flags.length; j++) {
-					if (flags[j] == '0') {
-						cRest++;
-						cWork = 0;
-					}
-					else {
-						if (cRest > 0 && cRest < k) {
-							sum = -1;
-							break;
-						}
-						cRest = 0;
-						cWork++;
-						if (cWork > k) {
-							sum = -1;
-							break;
-						}
-						sum += sumCosts[j];
-					}
-				}
-				max = Math.max(max, sum);
-			}
-			System.out.println(max);
+		int[] weights = new int[m];
+		int sum = 0;
+		for (int i = 0; i < m; i++) {
+			sum += weights[i] = ni();
 		}
+
+		int[] bs = new int[m];
+		for (int i = 0; i < k; i++) {
+			bs[ni() - 1]++;
+		}
+
+		final int MAX = 100001;
+		int[] needs = new int[MAX];
+
+		for (int i = 0; i < m; i++) {
+			double fi = (double) weights[i] / sum;
+			int bi = bs[i];
+
+			int j = 0;
+			while (j < MAX) {
+				j = (int) Math.ceil((bi + 1) / fi - k - 0.000000001d);
+				if (j < MAX) {
+					needs[j]++;
+					bi++;
+				}
+			}
+		}
+
+		int totalNeed = 0;
+		int i = 1;
+		for (; i < MAX; i++) {
+			if (totalNeed + needs[i] > i) {
+				break;
+			}
+			totalNeed += needs[i];
+		}
+
+		System.out.println(i < MAX ? i - 1 : "forever");
 	}
+
 	/* ****************************************************************
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
@@ -84,26 +85,6 @@ class DP6_3 {
 
 	static int ni() {
 		int num = 0, b;
-		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
-		if (b == '-') {
-			minus = true;
-			b = readByte();
-		}
-
-		while (true) {
-			if (b >= '0' && b <= '9') {
-				num = num * 10 + (b - '0');
-			} else {
-				return minus ? -num : num;
-			}
-			b = readByte();
-		}
-	}
-
-	static long nl() {
-		long num = 0;
-		int b;
 		boolean minus = false;
 		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {
