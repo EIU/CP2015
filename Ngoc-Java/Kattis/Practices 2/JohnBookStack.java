@@ -2,48 +2,50 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class BalancedDiet {
+public class JohnBookStack {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
-		int m = ni();
-		int k = ni();
 
-		int[] weights = new int[m];
-		int sum = 0;
-		for (int i = 0; i < m; i++) {
-			sum += weights[i] = ni();
+		int T = ni();
+		for (int t = 0; t < T; t++) {
+			solve();
 		}
+	}
 
-		int[] bs = new int[m];
-		for (int i = 0; i < k; i++) {
-			bs[ni() - 1]++;
-		}
-
-		int MAX = sum + 1; // 100001
-		int[] needs = new int[MAX];
-
-		for (int i = 0; i < m; i++) {
-			long j = 0;
-			int wi = weights[i];
-			long x = (long) bs[i] * sum + sum - (long) wi * k + wi - 1;
-			while ((j = x / wi) < MAX) {
-				needs[(int) j]++;
-				x += sum;
+	static void solve() {
+		long result = 0;
+		int n = ni();
+		int[] weights = new int[n];
+		for (int i = 0; i < n; i++) {
+			int weight = weights[i] = ni();
+			if (i == 0 || weight >= weights[i - 1]) {
+				continue;
 			}
-		}
 
-		int totalNeed = 0;
-		int i = 1;
-		for (; i < MAX; i++) {
-			if (totalNeed + needs[i] > i) {
-				break;
+			int j = i - 1;
+			while (j >= 0 && weights[j] >= weight) {
+				weights[j + 1] = weights[j];
+				j--;
 			}
-			totalNeed += needs[i];
+			j++;
+			weights[j] = weight;
+
+			int preCount = 1;
+			long pre = 1;
+			for (int k = 1; k <= j; k++) {
+				if (weights[k - 1] < weights[k]) {
+					pre = pre * (preCount + 1);
+					preCount = 1;
+				} else if (weights[k - 1] == weights[k]) {
+					preCount++;
+				}
+			}
+			result += pre;
 		}
 
-		System.out.println(i < MAX ? i - 1 : "forever");
+		System.out.println(result);
 	}
 
 	/* ****************************************************************

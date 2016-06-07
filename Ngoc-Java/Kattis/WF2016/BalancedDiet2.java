@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class BalancedDiet {
+public class BalancedDiet2 {
 	static InputStream is;
 
 	public static void main(String[] args) throws Exception {
@@ -21,16 +21,21 @@ public class BalancedDiet {
 			bs[ni() - 1]++;
 		}
 
-		int MAX = sum + 1; // 100001
+		// final int MAX = 100001;
+		int MAX = sum + 1;
 		int[] needs = new int[MAX];
 
 		for (int i = 0; i < m; i++) {
-			long j = 0;
-			int wi = weights[i];
-			long x = (long) bs[i] * sum + sum - (long) wi * k + wi - 1;
-			while ((j = x / wi) < MAX) {
-				needs[(int) j]++;
-				x += sum;
+			double fi = (double) weights[i] / sum;
+			int bi = bs[i];
+
+			int j = 0;
+			while (j < MAX) {
+				j = (int) Math.ceil((bi + 1) / fi - k - 0.000000001d);
+				if (j < MAX) {
+					needs[j]++;
+					bi++;
+				}
 			}
 		}
 
