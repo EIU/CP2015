@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class OnlineExamTest4 {
+public class OnlineExam6 {
 
 	static int n = 5000;
 	static int k = 2000;
@@ -11,27 +11,17 @@ public class OnlineExamTest4 {
 	static int[] globalRanks = new int[200];
 
 	public static void main(String[] args) throws Exception {
-		long total = 0;
-		for (int i = 0; i < 1000; i++) {
-			Test test = new Test();
-			OnlineExam robot = new OnlineExam(test, 70);
-			robot.solve();
-			total += Math.max(0, test.maxResult - 4000);
-			globalCount += robot.count;
-			globalX += robot.x;
-		}
-		System.out.println(total);
-		System.out.println(globalCount / 1000);
-		System.out.println(globalX);
-		System.out.println(Arrays.toString(globalRanks));
+				Test test = new Test();
+				OnlineExam robot = new OnlineExam(test, 70);
+				robot.solve();
 	}
 
 	static class OnlineExam {
 		Test test;
 
-		int n = OnlineExamTest2.n;
-		int k = OnlineExamTest2.k;
-		int x = OnlineExamTest2.x;
+		int n = OnlineExam6.n;
+		int k = OnlineExam6.k;
+		int x = OnlineExam6.x;
 
 		int firstResult = 2 * k;
 		int result = 2 * k;
@@ -44,34 +34,60 @@ public class OnlineExamTest4 {
 		int nStep = 66;
 		int count;
 
-		public OnlineExam(Test test, int STEP0) {
+		public OnlineExam(Test test, int nStep) {
 			this.test = test;
-			this.nStep = STEP0;
-			steps = new Segment[STEP0];
+			this.nStep = nStep;
+			steps = new Segment[nStep];
 		}
 
 		void fistAttempt() {
 			for (int i = 0; i < n; i++) {
-				if (fixed[i] == '\0') {
-					attempt[i] = Math.random() < 0.5 ? '0' : '1';
-				} else {
-					attempt[i] = fixed[i];
-				}
+				// if (fixed[i] == '\0') {
+				// attempt[i] = Math.random() < 0.5 ? '0' : '1';
+				// } else {
+				// attempt[i] = fixed[i];
+				// }
+				attempt[i] = '1';
 			}
 			result = print();
 
-			if (result < 2 * k) {
-				invert(0, result - 1);
-				result = print();
+			int f = 2 * (result - 2 * k);
+			invert(0, result / 2, 0);
+			int newResult = print();
+
+			if (f >= 0) {
+				if (newResult > result) {
+					// Lucky: OK
+				} else if (result - newResult > f) {
+					// OK
+					invert(0, result / 2, 0);
+					invert(result / 2, result, 0);
+					result = print();
+				} else {
+					// Unlucky, do nothing
+				}
+			} else {
+				if (newResult < result) {
+					// OK
+					invert(0, result / 2, 0);
+					invert(result / 2, result, 0);
+					result = print();
+				} else if (result - newResult < f) {
+					// Lucky
+				} else {
+					// Unlucky, do nothing
+				}
 			}
+
 			firstResult = result;
 		}
 
 		void processStep0() {
-			int distance = result / nStep;
+			int limit = firstResult;
+			int distance = limit / nStep;
 
 			int pre = 0;
-			int remain = nStep * distance + nStep - result;
+			int remain = nStep * distance + nStep - limit;
 			for (int i = 0; i < nStep; i++) {
 				steps[i] = new Segment(pre, pre += distance);
 				if (i == remain) {
@@ -80,13 +96,13 @@ public class OnlineExamTest4 {
 			}
 
 			for (Segment seg : steps) {
-				invert(seg.start, seg.end);
+				invert(seg.start, seg.end, 0);
 				int newResult = print();
 				seg.rank = Math.abs(newResult - 2 - result);
 				if (newResult > result) {
 					result = newResult;
 				} else {
-					invert(seg.start, seg.end);
+					invert(seg.start, seg.end, 0);
 				}
 				// globalRanks[seg.rank]++;
 			}
@@ -103,15 +119,36 @@ public class OnlineExamTest4 {
 			while (x > 1) {
 				Segment seg = queue.poll();
 				int mid = (seg.start + seg.end) / 2;
-				invert(seg.start, mid);
+				if (seg.type == 0) {
+					invert(seg.start, mid, 0);
+				} else {
+					invert(seg.start, seg.end, 1);
+				}
 				int newResult = print();
 				if (newResult - 2 <= result) {
-					invert(seg.start, mid);
-					if (-seg.rank < newResult - 2 - result) {
+					if (seg.type == 0) {
+						invert(seg.start, mid, 0);
+					} else {
+						invert(seg.start, seg.end, 1);
+					}
+					if (-seg.rank <= newResult - 2 - result) {
+						if (seg.type == 0) {
+							seg.type++;
+							queue.add(seg);
+						} else {
+							count++;
+						}
 						globalRanks[0]++;
 					} else {
-						Segment updatingSeg = new Segment(mid, seg.end);
-						updatingSegs.add(updatingSeg);
+						if (seg.type == 0) {
+							Segment updatingSeg = new Segment(mid, seg.end);
+							updatingSegs.add(updatingSeg);
+						} else {
+							Segment updatingSeg = new Segment(seg.start,
+									seg.end);
+							updatingSeg.type = 2;
+							updatingSegs.add(updatingSeg);
+						}
 						globalRanks[result - newResult + 2]++;
 					}
 				} else {
@@ -121,7 +158,7 @@ public class OnlineExamTest4 {
 			}
 
 			for (Segment seg : updatingSegs) {
-				invert(seg.start, seg.end);
+				invert(seg.start, seg.end, seg.type);
 			}
 			int newResult = print();
 		}
@@ -133,10 +170,14 @@ public class OnlineExamTest4 {
 			processStep1();
 		}
 
-		void invert(int start, int end) {
+		void invert(int start, int end, int type) {
 			int count = 0;
 			int iCount = 0;
-			for (; start < end && start < attempt.length; start++) {
+			int d = (type == 0 ? 1 : 2);
+			if (type == 2) {
+				start++;
+			}
+			for (; start < end && start < attempt.length; start += d) {
 				if (fixed[start] == '\0') {
 					attempt[start] = (attempt[start] == '0' ? '1' : '0');
 					count++;
@@ -152,7 +193,8 @@ public class OnlineExamTest4 {
 		int print() {
 			int result = test.submit(attempt);
 			if (result < attempt.length) {
-				fixed[result - 1] = attempt[result - 1] = (attempt[result - 1] == '0') ? '1' : '0';
+				fixed[result - 1] = attempt[result - 1] = (attempt[result - 1] == '0') ? '1'
+						: '0';
 				nfixed++;
 			}
 			x--;
@@ -163,6 +205,7 @@ public class OnlineExamTest4 {
 			public int start;
 			public int end;
 			public int rank;
+			public int type = 0;
 
 			public boolean shouldRevert;
 
@@ -179,29 +222,18 @@ public class OnlineExamTest4 {
 	}
 
 	static class Test {
-
-		char[] answers = new char[n];
+		Scanner sc = new Scanner(System.in);
 		int maxResult = 0;
-		int count0 = 0;
+		int i = 1;
 
 		public Test() {
-			for (int i = 0; i < answers.length; i++) {
-				answers[i] = (Math.random() < 0.5 ? '0' : '1');
-				count0 += (answers[i] == '0' ? 1 : 0);
-			}
 		}
 
 		public int submit(char[] submission) {
-			int err = 0;
-			int i = 0;
-			for (; i < answers.length; i++) {
-				err += (answers[i] != submission[i] ? 1 : 0);
-				if (err == k) {
-					break;
-				}
-			}
-			maxResult = Math.max(maxResult, i + 1);
-			return i + 1;
+			System.out.println(new String(submission));
+			System.out.flush();
+			int result = sc.nextInt();
+			return result;
 		}
 	}
 }

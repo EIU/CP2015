@@ -193,3 +193,46 @@ public class Utilities {
 		}
 	}
 }
+
+/* 
+static final long BASE = 256;
+static final long MOD = 1000000009;
+static void search(char[] pattern, char[] text)
+{
+	int pLen = pattern.length;
+	int tLen = text.length;
+	long maxPow = 1;
+
+	for (int i = 0; i < pLen - 1; i++) {
+		maxPow = (maxPow * BASE) % MOD;
+	}
+
+	long pHash = 0;
+	long tHash = 0;
+	for (int i = 0; i < pLen; i++) {
+		pHash = (BASE * pHash + pattern[i]) % MOD;
+		tHash = (BASE * tHash + text[i]) % MOD;
+	}
+
+	for (int i = 0; i <= tLen - pLen; i++) {
+		if (pHash == tHash) {
+			int j = 0;
+			for (; j < pLen; j++) {
+				if (text[i + j] != pattern[j]) {
+					break;
+				}
+			}
+			if (j == pLen) {
+				System.out.println("Pattern found at index " + i);
+			}
+		}
+
+		if (i < tLen - pLen) {
+			tHash = (BASE * (tHash - text[i] * maxPow) + text[i + pLen]) % MOD;
+			if (tHash < 0) {
+				tHash = (tHash + MOD);
+			}
+		}
+	}
+}
+// */

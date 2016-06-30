@@ -4,7 +4,6 @@ import java.util.*;
 
 public class NonBoringSequences {
 	static InputStream is;
-	static StringBuilder outBf = new StringBuilder();
 
 	public static void main(String[] args) throws Exception {
 		is = System.in;
@@ -31,27 +30,27 @@ public class NonBoringSequences {
 			}
 			preMap.put(v, i);
 		}
-		System.out.println(find(0, n) ? "non-boring" : "boring");
+
+		System.out.println(find(0, n - 1) ? "non-boring" : "boring");
 	}
 
-	static final int MAX = 200001;
-	static Integer[] numbers = new Integer[MAX];
-	static Integer[] pres = new Integer[MAX];
-	static Integer[] nexts = new Integer[MAX];
-	static boolean[] rands = new boolean[MAX];
+	static final int MAX = 200002;
+	static int[] numbers = new int[MAX];
+	static int[] pres = new int[MAX];
+	static int[] nexts = new int[MAX];
 
 	static boolean find(int left, int right) {
-		if (left >= right - 1) {
+		if (left >= right) {
 			return true;
 		}
-		int mid = (Math.random() < 0.5d) ? left : (right - 1);
-		int inc = (mid == left) ? 1 : -1;
-		while (left <= mid && mid < right && (pres[mid] >= left || nexts[mid] < right)) {
-			mid += inc;
-		}
-		// System.out.println(mid + " " + inc);
-		if (left <= mid && mid < right && find(left, mid) && find(mid + 1, right)) {
-			return true;
+
+		for (int i = 0; i <= (right - left + 1) / 2; i++) {
+			if (nexts[left + i] > right && pres[left + i] < left) {
+				return find(left, left + i - 1) && find(left + i + 1, right);
+			}
+			if (nexts[right - i] > right && pres[right - i] < left) {
+				return find(left, right - i - 1) && find(right - i + 1, right);
+			}
 		}
 		return false;
 	}
