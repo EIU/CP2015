@@ -1,9 +1,5 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.InputMismatchException;
+import java.io.*;
+import java.util.*;
 
 public class Utilities {
 	static InputStream is;
@@ -15,10 +11,76 @@ public class Utilities {
 		is = oj ? System.in : new ByteArrayInputStream(INPUT.getBytes());
 		out = new PrintWriter(System.out);
 
+		//		long s = System.currentTimeMillis();
+		//		int T = ni();
+		//		out.flush();
+		//		tr(System.currentTimeMillis() - s + "ms");
+
+		testTreeSet();
+	}
+
+	static void testPriorityQueue() {
+		PriorityQueue<Integer> map = new PriorityQueue<>();
+		int MAX = 2000000;
+		Random rand = new Random();
+
 		long s = System.currentTimeMillis();
-		int T = ni();
-		out.flush();
-		tr(System.currentTimeMillis() - s + "ms");
+
+		for (int i = 0; i < MAX; i++) {
+			map.add(rand.nextInt());
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms");
+
+		long total = 0;
+		for (int i = 0; i < MAX; i++) {
+			total += map.poll();
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms " + total);
+
+	}
+
+	static void testTreeSet() {
+		TreeSet<Integer> map = new TreeSet<>();
+		int MAX = 2000000;
+		Random rand = new Random();
+
+		long s = System.currentTimeMillis();
+
+		for (int i = 0; i < MAX; i++) {
+			map.add(rand.nextInt(Integer.MAX_VALUE));
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms");
+
+		long total = 0;
+		for (int i = 0; i < MAX; i++) {
+			total += map.contains(rand.nextInt(Integer.MAX_VALUE)) ? 1 : 0;
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms " + total + " " + map.first() + " " + map.last());
+	}
+
+	static void testTreeMap() {
+		TreeMap<Integer, Boolean> map = new TreeMap<>();
+		int MAX = 2000000;
+		Random rand = new Random();
+
+		long s = System.currentTimeMillis();
+
+		for (int i = 0; i < MAX; i++) {
+			map.put(rand.nextInt(Integer.MAX_VALUE), true);
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms");
+
+		long total = 0;
+		for (int i = 0; i < MAX; i++) {
+			total += map.containsKey(rand.nextInt(Integer.MAX_VALUE)) ? 1 : 0;
+		}
+
+		System.out.println((System.currentTimeMillis() - s) + " ms " + total);
 	}
 
 	static long gcd(long a, long b) {
