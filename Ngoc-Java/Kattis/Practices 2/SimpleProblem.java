@@ -1,27 +1,43 @@
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.math.*;
 import java.util.*;
 
-public class Template {
+public class SimpleProblem {
 	static InputStream is = System.in;
 
 	public static void main(String[] args) throws Exception {
-		is = System.in;
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			solve();
+		BigInteger[] factorials = new BigInteger[101];
+		BigInteger factorial = BigInteger.valueOf(1);
+		factorials[0] = factorial;
+		for (int i = 1; i <= 100; i++) {
+			factorials[i] = factorial = factorial.multiply(BigInteger.valueOf(i));
 		}
-	}
 
-	static void solve() {
-		
+		StringBuilder outBf = new StringBuilder();
+		do {
+			int nChar = 'z' - 'A' + 1;
+			int[] flags = new int[nChar];
+			char[] chars = ns().toCharArray();
+			for (char c : chars) {
+				flags[c - 'A']++;
+			}
+
+			BigInteger result = factorials[chars.length];
+			for (int i = 0; i < nChar; i++) {
+				if (flags[i] > 1) {
+					result = result.divide(factorials[flags[i]]);
+				}
+			}
+			outBf.append(result.toString() + "\n");
+		} while (hasNext());
+		System.out.print(outBf);
 	}
 
 	/* ****************************************************************
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
 
-	static byte[] inbuf = new byte[1024];
+	static byte[] inbuf = new byte[1 << 20];
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
@@ -41,7 +57,7 @@ public class Template {
 	}
 
 	static boolean hasNext() {
-		return ptrbuf + 3 < lenbuf;
+		return ptrbuf + 2 < lenbuf;
 	}
 
 	static boolean isSpaceChar(int c) {
@@ -52,6 +68,16 @@ public class Template {
 		int b;
 		while ((b = readByte()) != -1 && isSpaceChar(b));
 		return b;
+	}
+
+	static String ns() {
+		int b = skip();
+		StringBuilder sb = new StringBuilder();
+		while (!(isSpaceChar(b))) {
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
 	}
 
 	static int ni() {

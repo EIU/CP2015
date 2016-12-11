@@ -14,7 +14,7 @@ public class VirtualFriends {
 	}
 
 	static void solve() {
-		TreeMap<String, Node> map = new TreeMap<String, Node>();
+		HashMap<String, Node> map = new HashMap<String, Node>();
 		int N = ni();
 		StringBuilder bf = new StringBuilder();
 		for (int i = 0; i < N; i++) {
@@ -57,15 +57,11 @@ public class VirtualFriends {
 				return this;
 			}
 
-			Node root = this;
-			while (root.parent != null) {
-				root = root.parent;
-			}
-			return this.parent = root;
+			return this.parent = parent.getRoot();
 		}
 	}
 
-	/*****************************************************************
+	/* ****************************************************************
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
 

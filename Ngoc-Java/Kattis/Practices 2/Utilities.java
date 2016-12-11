@@ -92,6 +92,15 @@ public class Utilities {
 		return a;
 	}
 
+	static long gcd2(long a, long b) {
+		while (b > 0) {
+			long c = a % b;
+			a = b;
+			b = c;
+		}
+		return a;
+	}
+
 	static int MAX = 200001;
 	static int[] maxBIT = new int[MAX];
 
@@ -256,6 +265,23 @@ public class Utilities {
 	}
 }
 
+// DFS/BFS:
+
+// BIT: 
+
+// Segment Tree: 
+
+// Tree Set/Map: 
+
+// Dijkstra: VisuAlgoOnline
+
+// Kruskal: Minimum Spanning Tree
+
+// DP: Exact Change
+
+// Hash: SoftwareBugs, PowerStrings
+
+// Hash: ?
 /* 
 static final long BASE = 256;
 static final long MOD = 1000000009;

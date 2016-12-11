@@ -2,26 +2,55 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class Template {
+public class Factovisors {
 	static InputStream is = System.in;
 
 	public static void main(String[] args) throws Exception {
-		is = System.in;
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			solve();
-		}
+		StringBuilder outBf = new StringBuilder();
+		do {
+			int n = ni(), m = ni(), x = m;
+			boolean undivided = false;
+			for (int i = 2; (long) i * i <= x; i++) {
+				int power = 0;
+				while (x % i == 0) {
+					x /= i;
+					power++;
+				}
+				if (power > 0 && getFactorialPower(n, i) < power) {
+					undivided = true;
+					break;
+				}
+			}
+
+			if (x == 0 || x > 1 && !undivided && getFactorialPower(n, x) < 1) {
+				undivided = true;
+			}
+
+			if (undivided) {
+				outBf.append(String.format("%d does not divide %d!\n", m, n));
+			} else {
+				outBf.append(String.format("%d divides %d!\n", m, n));
+			}
+		} while (hasNext());
+
+		System.out.print(outBf);
 	}
 
-	static void solve() {
-		
+	static int getFactorialPower(long n, long p) {
+		int count = 0;
+		long q = p;
+		while (n >= q) {
+			count += n / q;
+			q *= p;
+		}
+		return count;
 	}
 
 	/* ****************************************************************
 	 ******************** BASIC READER *******************************
 	 *****************************************************************/
 
-	static byte[] inbuf = new byte[1024];
+	static byte[] inbuf = new byte[1 << 16];
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
