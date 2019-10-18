@@ -1,42 +1,47 @@
 import java.io.*;
 import java.util.*;
 
-public class adventuremoving4 {
+public class orders {
 
 	public static void main(String[] args) {
-		int tankSize = 200;
-		int length = reader.nextInt();
-		int[] status = new int[tankSize + 1];
+		int n = reader.nextInt();
+		int[] prices = new int[n];
+		for (int i = 0; i < n; i++) {
+			prices[i] = reader.nextInt();
+		}
+		int maxValue = 30001;
+		int[] countPaths = new int[maxValue];
+		int[] lastItems = new int[maxValue];
+		countPaths[0] = 1;
+		lastItems[0] = 1000;
 
-		Arrays.fill(status, -1);
-		status[100] = 0;
-
-		int position = 0;
-		while (reader.hasNext()) {
-
-			int lastUsed = -position + (position = reader.nextInt());
-			int price = reader.nextInt();
-
-			// Update
-			for (int volume = 0; volume <= tankSize; volume++) {
-				if (volume + lastUsed <= tankSize && status[volume + lastUsed] >= 0) {
-					status[volume] = status[volume + lastUsed];
-				} else {
-					status[volume] = -1;
-				}
-			}
-
-			for (int volume = 1; volume <= tankSize; volume++) {
-				if (status[volume - 1] >= 0) {
-					status[volume] = Integer.min(status[volume - 1] + price,
-							status[volume] < 0 ? Integer.MAX_VALUE : status[volume]);
+		for (int j = 1; j < maxValue; j++) {
+			for (int i = n - 1; i >= 0; i--) {
+				int previous = j - prices[i];
+				if (previous >= 0 && lastItems[previous] >= i && countPaths[previous] > 0) {
+					countPaths[j] = Math.min(countPaths[j] + countPaths[previous], 1000000000);
+					lastItems[j] = Math.max(i, lastItems[j]);
 				}
 			}
 		}
 
-		int lastUsed = length - position;
-		int min = (100 + lastUsed) <= tankSize ? status[100 + lastUsed] : -1;
-		System.out.println(min >= 0 ? min : "Impossible");
+		int m = reader.nextInt();
+		StringBuilder outBf = new StringBuilder();
+		for (int i = 0; i < m; i++) {
+			int totalValue = reader.nextInt();
+			if (countPaths[totalValue] == 0) {
+				outBf.append("Impossible");
+			} else if (countPaths[totalValue] > 1) {
+				outBf.append("Ambiguous");
+			} else {
+				while (totalValue > 0) {
+					outBf.append((lastItems[totalValue] + 1) + " ");
+					totalValue -= prices[lastItems[totalValue]];
+				}
+			}
+			outBf.append("\r\n");
+		}
+		System.out.println(outBf);
 	}
 
 	static FastInputReader reader = new FastInputReader(System.in);

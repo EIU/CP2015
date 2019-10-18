@@ -1,42 +1,33 @@
 import java.io.*;
 import java.util.*;
 
-public class adventuremoving4 {
+public class euclidsgame {
 
 	public static void main(String[] args) {
-		int tankSize = 200;
-		int length = reader.nextInt();
-		int[] status = new int[tankSize + 1];
+		int n1, n2;
 
-		Arrays.fill(status, -1);
-		status[100] = 0;
-
-		int position = 0;
-		while (reader.hasNext()) {
-
-			int lastUsed = -position + (position = reader.nextInt());
-			int price = reader.nextInt();
-
-			// Update
-			for (int volume = 0; volume <= tankSize; volume++) {
-				if (volume + lastUsed <= tankSize && status[volume + lastUsed] >= 0) {
-					status[volume] = status[volume + lastUsed];
-				} else {
-					status[volume] = -1;
-				}
-			}
-
-			for (int volume = 1; volume <= tankSize; volume++) {
-				if (status[volume - 1] >= 0) {
-					status[volume] = Integer.min(status[volume - 1] + price,
-							status[volume] < 0 ? Integer.MAX_VALUE : status[volume]);
-				}
-			}
+		while ((n1 = reader.nextInt()) > 0 && (n2 = reader.nextInt()) > 0) {
+			System.out.println(isFirstWin(n1, n2) ? "Stan wins" : "Ollie wins");
 		}
+	}
 
-		int lastUsed = length - position;
-		int min = (100 + lastUsed) <= tankSize ? status[100 + lastUsed] : -1;
-		System.out.println(min >= 0 ? min : "Impossible");
+	static boolean isFirstWin(int n1, int n2) {
+		int temp;
+		if (n1 < n2) {
+			temp = n1;
+			n1 = n2;
+			n2 = temp;
+		}
+		if (n1 / n2 > 1) {
+			return true;
+		}
+		temp = n2;
+		n2 = n1 - n2;
+		n1 = temp;
+		if (n2 == 0) {
+			return true;
+		}
+		return !isFirstWin(n1, n2);
 	}
 
 	static FastInputReader reader = new FastInputReader(System.in);

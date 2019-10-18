@@ -1,42 +1,70 @@
 import java.io.*;
 import java.util.*;
 
-public class adventuremoving4 {
+public class PATHINGRID2 {
 
 	public static void main(String[] args) {
-		int tankSize = 200;
-		int length = reader.nextInt();
-		int[] status = new int[tankSize + 1];
-
-		Arrays.fill(status, -1);
-		status[100] = 0;
-
-		int position = 0;
-		while (reader.hasNext()) {
-
-			int lastUsed = -position + (position = reader.nextInt());
-			int price = reader.nextInt();
-
-			// Update
-			for (int volume = 0; volume <= tankSize; volume++) {
-				if (volume + lastUsed <= tankSize && status[volume + lastUsed] >= 0) {
-					status[volume] = status[volume + lastUsed];
-				} else {
-					status[volume] = -1;
+		int T = reader.nextInt();
+		StringBuilder outBf = new StringBuilder();
+		for (int t = 0; t < T; t++) {
+			int n = reader.nextInt();
+			int m = reader.nextInt();
+			long[][] statuses = new long[m][64];
+			for (int i = 0; i < n; i++) {
+				char[] numbers = reader.next().toCharArray();
+				for (int j = 0; j < m; j++) {
+					int c = numbers[j] - '0';
+					if (i == 0 && j == 0) {
+						set(statuses[0], c);
+						continue;
+					}
+					if (i > 0 && c > 0) {
+						shiftUp(statuses[j], c);
+					}
+					if (j > 0) {
+						mergeLeftToRight(statuses[j - 1], statuses[j], c);
+					}
 				}
 			}
-
-			for (int volume = 1; volume <= tankSize; volume++) {
-				if (status[volume - 1] >= 0) {
-					status[volume] = Integer.min(status[volume - 1] + price,
-							status[volume] < 0 ? Integer.MAX_VALUE : status[volume]);
+			for (int b = 0; b < 4001; b++) {
+				if (check(statuses[m - 1], b)) {
+					outBf.append(b + " ");
 				}
 			}
+			outBf.append("\r\n");
 		}
+		System.out.println(outBf);
+	}
 
-		int lastUsed = length - position;
-		int min = (100 + lastUsed) <= tankSize ? status[100 + lastUsed] : -1;
-		System.out.println(min >= 0 ? min : "Impossible");
+	static void shiftUp(long[] status, int shift) {
+		long firstBits = 0;
+		for (int i = 0; i < status.length; i++) {
+			long temp = shift > 0 ? (status[i] >>> (64 - shift)) : 0;
+			status[i] = (status[i] << shift) | firstBits;
+			firstBits = temp;
+		}
+	}
+
+	static void mergeLeftToRight(long[] leftStatus, long[] rightStatus, int shift) {
+		long firstBits = 0;
+		for (int i = 0; i < rightStatus.length; i++) {
+			long left = leftStatus[i];
+			long temp = shift > 0 ? (left >>> (64 - shift)) : 0;
+			left = (left << shift) | firstBits;
+			firstBits = temp;
+
+			rightStatus[i] |= left;
+		}
+	}
+
+	static void set(long[] status, int m) {
+		int index = m / 64;
+		status[index] |= (0x1 << (m % 64));
+	}
+
+	static boolean check(long[] status, int m) {
+		int index = m / 64;
+		return ((status[index] >>> (m % 64)) & 0x1) != 0;
 	}
 
 	static FastInputReader reader = new FastInputReader(System.in);

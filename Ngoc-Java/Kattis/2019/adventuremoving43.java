@@ -1,42 +1,55 @@
 import java.io.*;
 import java.util.*;
 
-public class adventuremoving4 {
+public class adventuremoving43 {
+
+	static int tankSize = 200;
+	static int currentVolume = tankSize / 2;
+	static int totalSpent = 0;
+	static Stack<Invoice> invoices = new Stack<Invoice>();
 
 	public static void main(String[] args) {
-		int tankSize = 200;
 		int length = reader.nextInt();
-		int[] status = new int[tankSize + 1];
 
-		Arrays.fill(status, -1);
-		status[100] = 0;
-
-		int position = 0;
+		int lastPosition = 0;
 		while (reader.hasNext()) {
-
-			int lastUsed = -position + (position = reader.nextInt());
+			int position = reader.nextInt();
 			int price = reader.nextInt();
-
-			// Update
-			for (int volume = 0; volume <= tankSize; volume++) {
-				if (volume + lastUsed <= tankSize && status[volume + lastUsed] >= 0) {
-					status[volume] = status[volume + lastUsed];
-				} else {
-					status[volume] = -1;
-				}
+			currentVolume -= (position - lastPosition);
+			if (currentVolume < 0) {
+				break;
 			}
-
-			for (int volume = 1; volume <= tankSize; volume++) {
-				if (status[volume - 1] >= 0) {
-					status[volume] = Integer.min(status[volume - 1] + price,
-							status[volume] < 0 ? Integer.MAX_VALUE : status[volume]);
-				}
-			}
+			refundHighPrice(price);
+			invoices.push(new Invoice(price, tankSize - currentVolume));
+			totalSpent += (tankSize - currentVolume) * price;
+			currentVolume = tankSize;
+			lastPosition = position;
 		}
+		currentVolume -= length - lastPosition;
+		currentVolume -= tankSize / 2;
+		refundHighPrice(0);
+		System.out.println(currentVolume < 0 ? "Impossible" : totalSpent);
+	}
 
-		int lastUsed = length - position;
-		int min = (100 + lastUsed) <= tankSize ? status[100 + lastUsed] : -1;
-		System.out.println(min >= 0 ? min : "Impossible");
+	static void refundHighPrice(int currentPrice) {
+		Invoice invoice;
+		while (currentVolume > 0 && !invoices.isEmpty() && (invoice = invoices.peek()).price > currentPrice) {
+			int min = Math.min(currentVolume, invoice.volume);
+			invoice.volume -= min;
+			currentVolume -= min;
+			totalSpent -= min * invoice.price;
+			invoices.pop();
+		}
+	}
+
+	static class Invoice {
+		public int price;
+		public int volume;
+
+		public Invoice(int price, int volume) {
+			this.price = price;
+			this.volume = volume;
+		}
 	}
 
 	static FastInputReader reader = new FastInputReader(System.in);

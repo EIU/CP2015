@@ -1,42 +1,61 @@
 import java.io.*;
 import java.util.*;
 
-public class adventuremoving4 {
+public class adventuremoving42 {
 
 	public static void main(String[] args) {
 		int tankSize = 200;
 		int length = reader.nextInt();
-		int[] status = new int[tankSize + 1];
 
-		Arrays.fill(status, -1);
-		status[100] = 0;
-
-		int position = 0;
+		Stack<Invoice> invoices = new Stack<Invoice>();
+		int currentVolume = tankSize / 2;
+		int lastPosition = 0;
+		int totalSpent = 0;
 		while (reader.hasNext()) {
-
-			int lastUsed = -position + (position = reader.nextInt());
+			int position = reader.nextInt();
 			int price = reader.nextInt();
+			currentVolume -= (position - lastPosition);
 
-			// Update
-			for (int volume = 0; volume <= tankSize; volume++) {
-				if (volume + lastUsed <= tankSize && status[volume + lastUsed] >= 0) {
-					status[volume] = status[volume + lastUsed];
+			if (currentVolume < 0) {
+				break;
+			}
+			while (currentVolume > 0 && !invoices.isEmpty()) {
+				Invoice invoice = invoices.peek();
+				if (invoice.price > price) {
+					int min = Math.min(currentVolume, invoice.volume);
+					invoice.volume -= min;
+					currentVolume -= min;
+					totalSpent -= min * invoice.price;
+					invoices.pop();
 				} else {
-					status[volume] = -1;
+					break;
 				}
 			}
-
-			for (int volume = 1; volume <= tankSize; volume++) {
-				if (status[volume - 1] >= 0) {
-					status[volume] = Integer.min(status[volume - 1] + price,
-							status[volume] < 0 ? Integer.MAX_VALUE : status[volume]);
-				}
-			}
+			invoices.push(new Invoice(price, tankSize - currentVolume));
+			totalSpent += (tankSize - currentVolume) * price;
+			currentVolume = tankSize;
+			lastPosition = position;
 		}
+		currentVolume -= length - lastPosition;
+		currentVolume -= tankSize / 2;
+		while (currentVolume > 0 && !invoices.isEmpty()) {
+			Invoice invoice = invoices.pop();
+			int min = Math.min(currentVolume, invoice.volume);
+			invoice.volume -= min;
+			currentVolume -= min;
+			totalSpent -= min * invoice.price;
+		}
+		System.out.println(currentVolume < 0 ? "Impossible" : totalSpent);
+	}
 
-		int lastUsed = length - position;
-		int min = (100 + lastUsed) <= tankSize ? status[100 + lastUsed] : -1;
-		System.out.println(min >= 0 ? min : "Impossible");
+	static class Invoice {
+		public int price;
+		public int volume;
+
+		public Invoice(int price, int volume) {
+			this.price = price;
+			this.volume = volume;
+		}
 	}
 
 	static FastInputReader reader = new FastInputReader(System.in);
