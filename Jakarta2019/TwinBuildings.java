@@ -1,50 +1,41 @@
 import java.io.*;
 import java.util.*;
 
-public class TAXIDRIVER {
+public class TwinBuildings {
 
 	public static void main(String[] args) {
-		int T = reader.nextInt();
-		StringBuilder outBf = new StringBuilder();
-		for (int t = 0; t < T; t++) {
-			int n = reader.nextInt();
-			int m = reader.nextInt();
-
-			@SuppressWarnings("unchecked")
-			ArrayList<Trip>[] map = new ArrayList[n + 1];
-			for (int i = 0; i < m; i++) {
-				Trip trip = new Trip(reader.nextInt(), reader.nextInt(), reader.nextInt());
-				map[trip.start].add(trip);
-			}
-
-			for (int i = n; i >= 1; i--) {
-				for (Trip trip : map[i]) {
-					for (int j = trip.start + 1; j < trip.end; j++) {
-						map[j].add(trip);
-					}
-				}
-			}
-
-			for (int i = 1; i < n; i++) {
-
-			}
-
-			outBf.append("\r\n");
+		int N = reader.nextInt();
+		Rectangle[] rectangles = new Rectangle[N];
+		for (int i = 0; i < N; i++) {
+			rectangles[i] = new Rectangle(reader.nextInt(), reader.nextInt());
 		}
-		System.out.println(outBf);
+
+		Arrays.sort(rectangles, (r1, r2) -> r2.W - r1.W != 0 ? (r2.W - r1.W) : (r2.L - r1.L));
+
+		Rectangle rectangle = rectangles[0];
+		long maxTwinArea = 0, maxArea = (long) rectangle.W * rectangle.L;
+		int maxL = rectangle.L;
+		for (int i = 1; i < N; i++) {
+			rectangle = rectangles[i];
+			maxArea = Math.max(maxArea, (long) rectangle.W * rectangle.L);
+			int bestL = Math.min(rectangle.L, maxL);
+			maxTwinArea = Math.max(maxTwinArea, (long) rectangle.W * bestL);
+			maxL = Math.max(maxL, rectangle.L);
+		}
+		if (maxTwinArea > maxArea / 2) {
+			System.out.println(maxTwinArea + ".0");
+		} else {
+			System.out.println((maxArea / 2) + (maxArea % 2 == 0 ? ".0" : "0.5"));
+		}
 	}
 
-	static class Trip {
-		public int start;
-		public int end;
-		public int cost;
-		public int[] holdMoney;
+	static class Rectangle {
+		public int W;
+		public int L;
 
-		public Trip(int start, int end, int cost) {
-			this.start = start;
-			this.end = end;
-			this.cost = cost;
-			holdMoney = new int[end - start + 1];
+		public Rectangle(int w, int l) {
+			W = Math.min(l, w);
+			L = Math.max(l, w);
 		}
 	}
 

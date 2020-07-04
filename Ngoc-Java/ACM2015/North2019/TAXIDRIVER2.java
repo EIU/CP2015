@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class TAXIDRIVER {
+public class TAXIDRIVER2 {
 
 	public static void main(String[] args) {
 		int T = reader.nextInt();
@@ -19,7 +19,7 @@ public class TAXIDRIVER {
 
 			for (int i = n; i >= 1; i--) {
 				for (Trip trip : map[i]) {
-					for (int j = trip.start + 1; j < trip.end; j++) {
+					for (int j = trip.start + 1; j <= trip.end; j++) {
 						map[j].add(trip);
 					}
 				}

@@ -61,7 +61,22 @@ public class GEN {
 		// gen_EIUFREQU(9, names3, 100000);
 		// gen_EIUFREQU(10, names3, 100000);
 
-		gen_KharkivH(1, 500, 500);
+		// gen_KharkivH(1, 500, 500);
+//		gen_EIPAIR(4, 10, 100000, 3, 200000);
+//		gen_EIPAIR(5, 10, 100000, 2, 200000);
+//		gen_EIPAIR(6, 10, 100000, 2000000000, 0);
+//		gen_EIPAIR(7, 10, 100000, 2, 100000);
+//		gen_EIPAIR(8, 10, 100000, 2000000000, 0);
+//		gen_EIPAIR(9, 10, 100000, 2, 1000000);
+		gen_EIUONCE(1, 10, 50, 40, 0);
+		gen_EIUONCE(2, 10, 5000, 1000, 0);
+		gen_EIUONCE(3, 10, 5000, 2000, 0);
+		gen_EIUONCE(4, 10, 5000, 2500, 0);
+		gen_EIUONCE(5, 10, 50000, 30000, 0);
+		gen_EIUONCE(6, 10, 50000, 25000, 1000000000);
+		gen_EIUONCE(7, 5, 50000, 25000, 1000000000);
+		gen_EIUONCE(8, 10, 100000, 50000, 0);
+		gen_EIUONCE(9, 5, 100000, 50000, 0);
 	}
 
 	public static String randString(int minLen, int maxLen) {
@@ -77,8 +92,7 @@ public class GEN {
 		if (start == end) {
 			end++;
 		}
-		return start
-				+ (int) Math.floor(Math.random() * (end - start - 0.000001));
+		return start + (int) Math.floor(Math.random() * (end - start - 0.000001));
 	}
 
 	public static void gen_KharkivH(int id, int N, int M) throws IOException {
@@ -108,13 +122,11 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < "
-				+ inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
-	public static void gen_EIUFREQU(int id, String[] names, int n)
-			throws Exception {
+	public static void gen_EIUFREQU(int id, String[] names, int n) throws Exception {
 		String root = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\";
 		String basePath = root + "EIUDSA14_Problemset_05\\";
 		String classPath = root + "bin\\";
@@ -137,13 +149,11 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < "
-				+ inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
-	public static void gen_EIUAPPEA(int id, int n, int minRange, int maxRange)
-			throws Exception {
+	public static void gen_EIUAPPEA(int id, int n, int minRange, int maxRange) throws Exception {
 		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\MidTerm\\EIUAPPEA\\";
 		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
 		String javaClass = "EIUAPPEA";
@@ -163,8 +173,7 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < "
-				+ inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
@@ -193,8 +202,7 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < "
-				+ inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
@@ -213,8 +221,66 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < "
-				+ inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIPAIR(int id, int testCase, int maxN, int maxAi, int baseAi) throws IOException {
+		String basePath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String classPath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String javaClass = "EIPAIR";
+
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(testCase + "\r\n");
+		for (int test = 0; test < testCase; test++) {
+			int n = maxN; // randBetween(maxN / 2, maxN);
+			int[] numbers = new int[Math.min(n, 1000)];
+			for (int i = 0; i < numbers.length; i++) {
+				numbers[i] = baseAi + randBetween(1, randBetween(1, 100) < 10 ? maxAi : Math.min(maxAi, 100));
+				// numbers[i] = baseAi + randBetween(1, maxAi);
+			}
+			inBuffer.append(n + " ");
+			for (int i = 0; i < n; i++) {
+				inBuffer.append(numbers[randBetween(0, numbers.length)] + " ");
+			}
+			inBuffer.append("\r\n");
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIUONCE(int id, int testCase, int maxN, int maxAi, int baseAi) throws IOException {
+		String basePath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String classPath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String javaClass = "EIUONCE";
+
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(testCase + "\r\n");
+		for (int test = 0; test < testCase; test++) {
+			int n = maxN;
+			inBuffer.append(n + " ");
+			for (int i = 0; i < n; i++) {
+				inBuffer.append((baseAi + randBetween(0, maxAi)) + " ");
+			}
+			inBuffer.append("\r\n");
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 }
