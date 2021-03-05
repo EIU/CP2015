@@ -68,15 +68,34 @@ public class GEN {
 //		gen_EIPAIR(7, 10, 100000, 2, 100000);
 //		gen_EIPAIR(8, 10, 100000, 2000000000, 0);
 //		gen_EIPAIR(9, 10, 100000, 2, 1000000);
-		gen_EIUONCE(1, 10, 50, 40, 0);
-		gen_EIUONCE(2, 10, 5000, 1000, 0);
-		gen_EIUONCE(3, 10, 5000, 2000, 0);
-		gen_EIUONCE(4, 10, 5000, 2500, 0);
-		gen_EIUONCE(5, 10, 50000, 30000, 0);
-		gen_EIUONCE(6, 10, 50000, 25000, 1000000000);
-		gen_EIUONCE(7, 5, 50000, 25000, 1000000000);
-		gen_EIUONCE(8, 10, 100000, 50000, 0);
-		gen_EIUONCE(9, 5, 100000, 50000, 0);
+
+//		gen_EIUONCE(1, 10, 50, 40, 0);
+//		gen_EIUONCE(2, 10, 5000, 1000, 0);
+//		gen_EIUONCE(3, 10, 5000, 2000, 0);
+//		gen_EIUONCE(4, 10, 5000, 2500, 0);
+//		gen_EIUONCE(5, 10, 50000, 30000, 0);
+//		gen_EIUONCE(6, 10, 50000, 25000, 1000000000);
+//		gen_EIUONCE(7, 5, 50000, 25000, 1000000000);
+//		gen_EIUONCE(8, 10, 100000, 50000, 0);
+//		gen_EIUONCE(9, 5, 100000, 50000, 0);
+
+		int i = 0;
+		for (i = 0; i < 12; i += 6) {
+			gen_EIUPURCHASE3(i, 1000000, 30000000, 5000000, 3, 13, "0.015");
+			gen_EIUPURCHASE3(i + 1, 1000000, 30000000, 5000000, 3, 13, "0.025");
+			gen_EIUPURCHASE3(i + 2, 1000000, 30000000, 5000000, 3, 13, "0.055");
+			gen_EIUPURCHASE3(i + 3, 1000000, 30000000, 5000000, 3, 13, "0.075");
+			gen_EIUPURCHASE3(i + 4, 1000000, 30000000, 5000000, 3, 13, "0.095");
+			gen_EIUPURCHASE3(i + 5, 1000000, 30000000, 5000000, 3, 13, "0.100");
+		}
+		for (; i < 20; i += 6) {
+			gen_EIUPURCHASE3(i, 1900000000, 2000000000, 0, 40, 48, "0.015");
+			gen_EIUPURCHASE3(i + 1, 1900000000, 2000000000, 0, 40, 48, "0.035");
+			gen_EIUPURCHASE3(i + 2, 1900000000, 2000000000, 0, 40, 48, "0.055");
+			gen_EIUPURCHASE3(i + 3, 1900000000, 2000000000, 0, 40, 48, "0.090");
+			gen_EIUPURCHASE3(i + 4, 1900000000, 2000000000, 0, 40, 48, "0.095");
+			gen_EIUPURCHASE3(i + 5, 1900000000, 2000000000, 0, 40, 48, "0.100");
+		}
 	}
 
 	public static String randString(int minLen, int maxLen) {
@@ -276,6 +295,28 @@ public class GEN {
 			}
 			inBuffer.append("\r\n");
 		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIUPURCHASE3(int id, int minPrice, int maxPrice, int maxPrepay, int minMonth, int maxMonth,
+			String interst) throws IOException {
+		String basePath = "E:\\GitHub\\DSAW2017\\bin\\EIUPURCHASE3\\";
+		String classPath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String javaClass = "EIUPURCHASE3_Improved";
+
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		int price = randBetween(minPrice, maxPrice);
+		inBuffer.append(price + " " + randBetween(0, Math.min(maxPrepay, price)) + " " + randBetween(minMonth, maxMonth)
+				+ " " + interst);
 
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
