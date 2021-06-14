@@ -79,24 +79,63 @@ public class GEN {
 //		gen_EIUONCE(8, 10, 100000, 50000, 0);
 //		gen_EIUONCE(9, 5, 100000, 50000, 0);
 
-		int i = 0;
-		for (i = 0; i < 12; i += 6) {
-			gen_EIUPURCHASE3(i, 1000000, 30000000, 5000000, 3, 13, "0.015");
-			gen_EIUPURCHASE3(i + 1, 1000000, 30000000, 5000000, 3, 13, "0.025");
-			gen_EIUPURCHASE3(i + 2, 1000000, 30000000, 5000000, 3, 13, "0.055");
-			gen_EIUPURCHASE3(i + 3, 1000000, 30000000, 5000000, 3, 13, "0.075");
-			gen_EIUPURCHASE3(i + 4, 1000000, 30000000, 5000000, 3, 13, "0.095");
-			gen_EIUPURCHASE3(i + 5, 1000000, 30000000, 5000000, 3, 13, "0.100");
-		}
-		for (; i < 20; i += 6) {
-			gen_EIUPURCHASE3(i, 1900000000, 2000000000, 0, 40, 48, "0.015");
-			gen_EIUPURCHASE3(i + 1, 1900000000, 2000000000, 0, 40, 48, "0.035");
-			gen_EIUPURCHASE3(i + 2, 1900000000, 2000000000, 0, 40, 48, "0.055");
-			gen_EIUPURCHASE3(i + 3, 1900000000, 2000000000, 0, 40, 48, "0.090");
-			gen_EIUPURCHASE3(i + 4, 1900000000, 2000000000, 0, 40, 48, "0.095");
-			gen_EIUPURCHASE3(i + 5, 1900000000, 2000000000, 0, 40, 48, "0.100");
-		}
+//		int i = 0;
+//		for (i = 0; i < 12; i += 6) {
+//			gen_EIUPURCHASE3(i, 1000000, 30000000, 5000000, 3, 13, "0.015");
+//			gen_EIUPURCHASE3(i + 1, 1000000, 30000000, 5000000, 3, 13, "0.025");
+//			gen_EIUPURCHASE3(i + 2, 1000000, 30000000, 5000000, 3, 13, "0.055");
+//			gen_EIUPURCHASE3(i + 3, 1000000, 30000000, 5000000, 3, 13, "0.075");
+//			gen_EIUPURCHASE3(i + 4, 1000000, 30000000, 5000000, 3, 13, "0.095");
+//			gen_EIUPURCHASE3(i + 5, 1000000, 30000000, 5000000, 3, 13, "0.100");
+//		}
+//		for (; i < 20; i += 6) {
+//			gen_EIUPURCHASE3(i, 1900000000, 2000000000, 0, 40, 48, "0.015");
+//			gen_EIUPURCHASE3(i + 1, 1900000000, 2000000000, 0, 40, 48, "0.035");
+//			gen_EIUPURCHASE3(i + 2, 1900000000, 2000000000, 0, 40, 48, "0.055");
+//			gen_EIUPURCHASE3(i + 3, 1900000000, 2000000000, 0, 40, 48, "0.090");
+//			gen_EIUPURCHASE3(i + 4, 1900000000, 2000000000, 0, 40, 48, "0.095");
+//			gen_EIUPURCHASE3(i + 5, 1900000000, 2000000000, 0, 40, 48, "0.100");
+//		}
+
+//		gen_EIUGIFT1(20, 15, 1, 100, 1, 200);
+//		gen_EIUGIFT1(20, 15, 1, 100, 1, 500);
+//		gen_EIUGIFT1(20, 15, 1, 100, 1, 200);
+//		gen_EIUGIFT1(20, 15, 1, 100, 1, 500);
+//		gen_EIUGIFT1(20, 15, 1, 100, 100, 200);
+//		gen_EIUGIFT1(20, 15, 1, 100, 100, 500);
+//		gen_EIUGIFT1(20, 50, 1, 100, 1, 300);
+//		gen_EIUGIFT1(20, 50, 1, 100, 1, 500);
+//		gen_EIUGIFT1(20, 50, 1, 100, 100, 300);
+//		gen_EIUGIFT1(20, 50, 1, 100, 100, 500);
+//
+//		int K = 10000;
+//		gen_EIUGIFT1(10 * K, 10 * K, 50_000, 100_000, 1, 200_000);
+//		gen_EIUGIFT1(10 * K, 10 * K, 50_000, 100_000, 1, 150_000);
+//		gen_EIUGIFT1(10 * K, 5 * K, 1, 10_000, 1, 20_000);
+//		gen_EIUGIFT1(10 * K, 5 * K, 1, 10_000, 5_000, 40_000);
+//		gen_EIUGIFT1(10 * K, 5 * K, 1, 10_000, 5_000, 20_000);
+//		gen_EIUGIFT1(10 * K, 5 * K, 1, 1000_000, 100_000, 10_000_000);
+//		K = 2000;
+//		gen_EIUGIFT1(10 * K, 50 * K, 1, 10_000, 1, 20_000);
+//		gen_EIUGIFT1(10 * K, 50 * K, 1, 10_000, 1, 100_000);
+//		gen_EIUGIFT1(10 * K, 50 * K, 1, 10_000, 1000, 20_000);
+//		gen_EIUGIFT1(10 * K, 50 * K, 1, 1000_000, 100_000, 10_000_000);
+//
+//		gen_EIUGIFT1(50 * K, 50 * K, 1, 100_000, 1, 100_000);
+//		gen_EIUGIFT1(49 * K, 50 * K, 1, 110_000, 1, 110_000);
+//		gen_EIUGIFT1(50 * K, 49 * K, 1, 120_000, 1, 120_000);
+//		gen_EIUGIFT1(49 * K, 50 * K, 1, 130_000, 1, 130_000);
+//		gen_EIUGIFT1(50 * K, 49 * K, 1, 140_000, 1, 140_000);
+//		gen_EIUGIFT1(50 * K, 50 * K, 1, 150_000, 1, 150_000);
+
+		globalId = 30;
+		gen_EIULOGFILE(100_000, 0, 1_200_000);
+		gen_EIULOGFILE(100_000, 0, 1_000_000);
+		gen_EIULOGFILE(100_000, 0, 800_000);
+		gen_EIULOGFILE(100_000, 0, 600_000);
 	}
+
+	static int globalId = 0;
 
 	public static String randString(int minLen, int maxLen) {
 		int len = randBetween(minLen, maxLen);
@@ -317,6 +356,57 @@ public class GEN {
 		int price = randBetween(minPrice, maxPrice);
 		inBuffer.append(price + " " + randBetween(0, Math.min(maxPrepay, price)) + " " + randBetween(minMonth, maxMonth)
 				+ " " + interst);
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIUGIFT1(int n, int m, int minN, int maxN, int minM, int maxM) throws IOException {
+		String basePath = "E:\\GitHub\\DSAW2017\\bin\\EIUGIFT1\\";
+		String classPath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String javaClass = "EIUGIFT1";
+
+		int id = globalId++;
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+
+		inBuffer.append(n + " " + m + "\r\n");
+		for (int i = 0; i < n; i++) {
+			inBuffer.append(randBetween(minN, maxN) + " ");
+		}
+		inBuffer.append("\r\n");
+		for (int i = 0; i < m; i++) {
+			inBuffer.append(randBetween(minM, maxM) + " ");
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	static public void gen_EIULOGFILE(int n, int min, int max) throws IOException {
+		String basePath = "E:\\GitHub\\DSAW2017\\bin\\EIULOGFILE\\";
+		String classPath = "E:\\GitHub\\DSAW2017\\bin\\";
+		String javaClass = "EIULOGFILE";
+
+		int id = globalId++;
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(n + "\r\n");
+		for (int i = 0; i < n; i++) {
+			inBuffer.append(randBetween(min, max) + " ");
+		}
 
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
