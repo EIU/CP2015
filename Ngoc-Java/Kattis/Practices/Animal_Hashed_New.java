@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
+////https://open.kattis.com/problems/animal
 public class Animal_Hashed_New {
 	static InputStream is;
 
@@ -75,6 +76,7 @@ public class Animal_Hashed_New {
 	static long MUL = 2038072819L; // 1301081
 	static long MUL2 = 3121238891L;
 	static long MOD = 32416190071L; // 22801763489L;
+
 	static long nextNumberHashed() {
 		long value = 1;
 		while (isDigit(buffer[position])) {
@@ -83,6 +85,7 @@ public class Animal_Hashed_New {
 
 		return value;
 	}
+
 	static boolean isDigit(char c) {
 		return '0' <= c && c <= '9';
 	}

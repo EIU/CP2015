@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+//https://open.kattis.com/problems/ceiling
 public class Ceiling_Hash {
 	static InputStream is;
 

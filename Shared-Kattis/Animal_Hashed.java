@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+//https://open.kattis.com/problems/animal
 public class Animal_Hashed {
 	static InputStream is;
 
@@ -28,8 +29,9 @@ public class Animal_Hashed {
 
 	}
 
-	static ArrayList<Long> hashedValues = new ArrayList<Long>();
+	static ArrayList<Long> hashedValues = new ArrayList<Long>();	
 	static int result = 0;
+
 	static Comparator<Long> comparator = new Comparator<Long>() {
 		@Override
 		public int compare(Long arg0, Long arg1) {
@@ -83,6 +85,7 @@ public class Animal_Hashed {
 
 	static int position = 0;
 	static char[] buffer;
+
 	static long nextValue() {
 		StringBuffer bf = new StringBuffer();
 		while (isDigit(buffer[position])) {
@@ -101,6 +104,7 @@ public class Animal_Hashed {
 
 		return 0;
 	}
+
 	static boolean isDigit(char c) {
 		return '0' <= c && c <= '9';
 	}

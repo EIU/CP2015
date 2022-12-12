@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
+//https://open.kattis.com/problems/animal
 public class Animal_Hashed_New {
 	static InputStream is;
 
